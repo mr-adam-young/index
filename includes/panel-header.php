@@ -27,7 +27,6 @@
 				<li><a href="index.php?all=true">All Projects</a></li>
 				<li><a href="index.php?job=new">Add New Job</a></li>
 				<li><a href="employee.php">Employees</a></li>
-				<li><a href="misc.php">Miscellaneous</a></li>
 			</ul>
 		</nav>
 		<div id="nav_misc">

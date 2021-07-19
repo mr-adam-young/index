@@ -55,15 +55,7 @@ function interverse_neo4j($cypher, $dry_run = true) {
         $res = $bolt->run($cypher);
 
         # Pull records from last query
-        $rows = $bolt->pull();
-
-        # the Bolt driver gives us a nasty array full of garbage so we have to sift through it.
-        # if it returns an array with one result, it's nothing.
-        if (count($rows) > 1) {
-            return $rows;
-        } else {
-            return 0;
-        }
+        return $bolt->pull();
     }
 }
 

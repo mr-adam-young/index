@@ -1,24 +1,42 @@
 <?php return array (
   'root' => 
   array (
-    'pretty_version' => '1.0.0+no-version-set',
-    'version' => '1.0.0.0',
+    'pretty_version' => 'dev-main',
+    'version' => 'dev-main',
     'aliases' => 
     array (
     ),
-    'reference' => NULL,
+    'reference' => 'ad8cd98692f5e205b27ea1ab27205e3039649363',
     'name' => '__root__',
   ),
   'versions' => 
   array (
     '__root__' => 
     array (
-      'pretty_version' => '1.0.0+no-version-set',
-      'version' => '1.0.0.0',
+      'pretty_version' => 'dev-main',
+      'version' => 'dev-main',
       'aliases' => 
       array (
       ),
-      'reference' => NULL,
+      'reference' => 'ad8cd98692f5e205b27ea1ab27205e3039649363',
+    ),
+    'chillerlan/php-qrcode' => 
+    array (
+      'pretty_version' => '4.3.1',
+      'version' => '4.3.1.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'be3beb936c21fe53a4e7e8f7f3582e9f02443666',
+    ),
+    'chillerlan/php-settings-container' => 
+    array (
+      'pretty_version' => '2.1.1',
+      'version' => '2.1.1.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '98ccc1b31b31a53bcb563465c4961879b2b93096',
     ),
     'graham-campbell/result-type' => 
     array (
