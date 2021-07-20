@@ -1,12 +1,19 @@
-<?php
+<?php /* -------------------------------------
 # index_inspector.php
-# include the important stuff
+
+Load a single node as a webpage and display its properties and relationships
+---------------------------------------------*/
 require_once __DIR__.'/includes/main-include.php';
 require_once __DIR__.'/includes/panel-header.php';
 
-# get the specific node using its ID from $_GET
 $result = interverse_neo4j("MATCH (n) WHERE ID(n) = {$_GET['id']} RETURN n", false); 
-$object = $result[0];
+echo "<p>Raw result</p>";
+
+$result = get_object_vars($result);
+echo "<p>get_object_vars()</p>";
+var_dump($result);
+echo "<p>json encode+decode trick</p>";
+echo json_decode(json_encode($result));
 
 echo "<pre>";
 var_dump($object[0]);
