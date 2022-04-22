@@ -45,6 +45,7 @@ services:
             test: ["CMD", "mysqladmin", "ping", "-p${DB_PASSWORD}"]
             retries: 3
             timeout: 5s
+        command: --secure-file-priv=''
     redis:
         image: 'redis:alpine'
         ports:
