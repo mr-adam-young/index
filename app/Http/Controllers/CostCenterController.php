@@ -25,9 +25,8 @@ class CostCenterController extends Controller
      */
     public function index()
     {
-        return $this->user
-            ->cost_centers()
-            ->get();
+        $test = CostCenter::paginate();
+        return $test;
     }
 
     /**

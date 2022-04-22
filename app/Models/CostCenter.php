@@ -12,3 +12,4 @@ class CostCenter extends Model
         'long_name', 'short_name', 'description'
     ];
 }
+
