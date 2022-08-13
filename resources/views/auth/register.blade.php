@@ -1,63 +1,14 @@
 @extends('layouts.app', [
     'class' => 'register-page',
-    'backgroundImagePath' => 'img/bg/jan-sendereks.jpg'
 ])
 
 @section('content')
     <div class="content">
         <div class="container">
-            <div class="row">
-                <div class="col-lg-5 col-md-5 ml-auto">
-                    <div class="info-area info-horizontal mt-5">
-                        <div class="icon icon-primary">
-                            <i class="nc-icon nc-tv-2"></i>
-                        </div>
-                        <div class="description">
-                            <h5 class="info-title">{{ __('Marketing') }}</h5>
-                            <p class="description">
-                                {{ __('We\'ve created the marketing campaign of the website. It was a very interesting collaboration.') }}
-                            </p>
-                        </div>
-                    </div>
-                    <div class="info-area info-horizontal">
-                        <div class="icon icon-primary">
-                            <i class="nc-icon nc-html5"></i>
-                        </div>
-                        <div class="description">
-                            <h5 class="info-title">{{ __('Fully Coded in HTML5') }}</h5>
-                            <p class="description">
-                                {{ __('We\'ve developed the website with HTML5 and CSS3. The client has access to the code using GitHub.') }}
-                            </p>
-                        </div>
-                    </div>
-                    <div class="info-area info-horizontal">
-                        <div class="icon icon-info">
-                            <i class="nc-icon nc-atom"></i>
-                        </div>
-                        <div class="description">
-                            <h5 class="info-title">{{ __('Built Audience') }}</h5>
-                            <p class="description">
-                                {{ __('There is also a Fully Customizable CMS Admin Dashboard for this product.') }}
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 mr-auto">
+                <div class="col-lg-4 col-md-6 ml-auto mr-auto">
                     <div class="card card-signup text-center">
                         <div class="card-header ">
-                            <h4 class="card-title">{{ __('Register') }}</h4>
-                            <div class="social">
-                                <button class="btn btn-icon btn-round btn-twitter">
-                                    <i class="fa fa-twitter"></i>
-                                </button>
-                                <button class="btn btn-icon btn-round btn-dribbble">
-                                    <i class="fa fa-dribbble"></i>
-                                </button>
-                                <button class="btn btn-icon btn-round btn-facebook">
-                                    <i class="fa fa-facebook-f"></i>
-                                </button>
-                                <p class="card-description">{{ __('or be classical') }}</p>
-                            </div>
+                            <h4 class="card-title">{{ __('Create an account') }}</h4>
                         </div>
                         <div class="card-body ">
                             <form class="form" method="POST" action="{{ route('register') }}">
@@ -134,7 +85,6 @@
                         </div>
                     </div>
                 </div>
-             </div>
         </div>
      </div> 
 @endsection

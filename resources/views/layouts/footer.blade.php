@@ -4,15 +4,6 @@
             <nav class="footer-nav">
                 <ul>
                     <li>
-                        <a href="https://app.index.one" target="_blank">{{ __('Creative Tim') }}</a>
-                    </li>
-                    <li>
-                        <a href="https://updivision.com" target="_blank">{{ __('UpDivision') }}</a>
-                    </li>
-                    <li>
-                        <a href="http://blog.creative-tim.com/" target="_blank">{{ __('Blog') }}</a>
-                    </li>
-                    <li>
                         <a href="https://app.index.one/license" target="_blank">{{ __('Licenses') }}</a>
                     </li>
                 </ul>
