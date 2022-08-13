@@ -25,7 +25,7 @@
                 </a>
             </li>
             <li class="button-container">
-                <a href="https://www.creative-tim.com/product/paper-dashboard-laravel" target="_blank"
+                <a href="https://app.index.one/product/paper-dashboard-laravel" target="_blank"
                     class="btn btn-primary btn-block btn-round">Download Now</a>
             </li>
             <li class="button-container">
@@ -38,7 +38,7 @@
                 Want more components?
             </li>
             <li class="button-container">
-                <a href="https://www.creative-tim.com/product/paper-dashboard-pro-laravel" target="_blank"
+                <a href="https://app.index.one/product/paper-dashboard-pro-laravel" target="_blank"
                     class="btn btn-danger btn-block btn-round">
                     Get Pro Version
                 </a>

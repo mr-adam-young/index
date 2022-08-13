@@ -4,7 +4,7 @@
             <nav class="footer-nav">
                 <ul>
                     <li>
-                        <a href="https://www.creative-tim.com" target="_blank">{{ __('Creative Tim') }}</a>
+                        <a href="https://app.index.one" target="_blank">{{ __('Creative Tim') }}</a>
                     </li>
                     <li>
                         <a href="https://updivision.com" target="_blank">{{ __('UpDivision') }}</a>
@@ -13,7 +13,7 @@
                         <a href="http://blog.creative-tim.com/" target="_blank">{{ __('Blog') }}</a>
                     </li>
                     <li>
-                        <a href="https://www.creative-tim.com/license" target="_blank">{{ __('Licenses') }}</a>
+                        <a href="https://app.index.one/license" target="_blank">{{ __('Licenses') }}</a>
                     </li>
                 </ul>
             </nav>
@@ -22,7 +22,7 @@
                     ©
                     <script>
                         document.write(new Date().getFullYear())
-                    </script>{{ __(', made with ') }}<i class="fa fa-heart heart"></i>{{ __(' by ') }}<a class="@if(Auth::guest()) text-white @endif" href="https://www.creative-tim.com" target="_blank">{{ __('Creative Tim') }}</a>{{ __(' and ') }}<a class="@if(Auth::guest()) text-white @endif" target="_blank" href="https://updivision.com">{{ __('UPDIVISION') }}</a>
+                    </script>{{ __(', made with ') }}<i class="fa fa-heart heart"></i>{{ __(' by ') }}<a class="@if(Auth::guest()) text-white @endif" href="https://app.index.one" target="_blank">{{ __('Creative Tim') }}</a>{{ __(' and ') }}<a class="@if(Auth::guest()) text-white @endif" target="_blank" href="https://updivision.com">{{ __('UPDIVISION') }}</a>
                 </span>
             </div>
         </div>

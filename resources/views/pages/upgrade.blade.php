@@ -124,7 +124,7 @@
                                         </td>
                                         <td class="text-center">
                                             <a target="_blank"
-                                                href="https://www.creative-tim.com/product/paper-dashboard-pro-laravel"
+                                                href="https://app.index.one/product/paper-dashboard-pro-laravel"
                                                 class="btn btn-round btn-primary">Upgrade to PRO</a>
                                         </td>
                                     </tr>
