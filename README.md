@@ -1,8 +1,12 @@
-# Emeraude
+# Index
 
-Laravel installation for testing API+JWT authentication
+Test implementation of general use database 
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## TO DO
+
+1. Create custom controller
+2. Utilize API routes via React Native or Angular front end app
+
 
 ## Links
 
