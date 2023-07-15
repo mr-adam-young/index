@@ -8,11 +8,8 @@ Implemented with [Laravel](https://github.com/laravel/laravel) framework.
 
 ## TO DO
 
-- !!! High priority
-  - 
 - **Minimum viable product (MVP)** - basic functionality of the url and qr code generation
-  - test
-  - test
+  - Project is named "ndx" to distinguish from the MVP which will be named "index" and accessible via naked index.one domain
 
 ## Tutorials
 
