@@ -13,9 +13,24 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+/* default route, add type hinted option that attempts to detect GUID presence
+
+- if missing, 404
+- put 418 in there too
+- 403 forbidden
+- 
+
+https://laravel.com/docs/10.x/routing
+*/
+
 Route::get('/', function () {
     return view('auth.login');
 });
+
+Route::get('/{id}', function (string $id) {
+        return view('inspector')
+            ->with('id', $id);
+})->whereUuid('id');
 
 Auth::routes();
 
