@@ -1,6 +1,10 @@
 # Index
 Version 0.0.000001
 
+## TODO
+
+- Add console route to create and register a new ULID
+
 ## Not Yet Implemented
 - ULIDs
 - 1Password style key:value pair adding (GUI)
