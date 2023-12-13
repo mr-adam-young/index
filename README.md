@@ -1,3 +1,5 @@
-# isme
+# ISME
+## Interversal Systems Management Engine
 
-Index transition project. Prototyping and building out code for inclusion in framework later.
+### About
+CRM and ERP system for metal fabrication company. 
