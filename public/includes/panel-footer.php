@@ -2,11 +2,8 @@
 </div>
 
 <footer class="main-footer">
-        <p><img src="images/logo-white-transparent-200px-lighter.png" alt=""/></p>
-        <b>Version</b> <?php echo SITE_VERSION; ?>
-    <!-- /.container -->
-  </footer>
-<!-- ./wrapper -->
+    <?php echo APP_NAME . " " . APP_VERSION; ?>
+</footer>
 
 </body>
 </html>

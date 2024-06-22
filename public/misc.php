@@ -45,4 +45,4 @@ require 'documents/changelog.htm';
 
 <?php
 
-require '/srv/isme.interversal.systems/includes/panel-footer.php'; 
+require 'includes/panel-footer.php'; 

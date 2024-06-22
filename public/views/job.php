@@ -170,9 +170,9 @@ if ($job['Title']=='') {
 
 <?php
 if ($_GET['job'] == 'new') {
-	echo '<form action="'.SITE_ROOT.'/?job='.$job['ID'].'&action=new" method="post">';
+	echo '<form action="?job='.$job['ID'].'&action=new" method="post">';
 } else {
-	echo '<form action="'.SITE_ROOT.'/?job='.$job['ID'].'&action=edit" method="post">';
+	echo '<form action="?job='.$job['ID'].'&action=edit" method="post">';
 }
 
 
@@ -359,7 +359,7 @@ foreach ($invoices as $invoice) {
  $estimated_purchases += $invoice['Cost'];
 }
 echo "<tr>
-		<th>".money_format('$%i', $estimated_purchases)."</th>
+		<th>".$estimated_purchases."</th>
 		<th>Total</th>
 		<th>All Sources</th>
 		<th></th>
@@ -424,9 +424,9 @@ foreach ($LaborSummary as $LaborType) {
 echo "<tr>
 		<th>Total</th>
 		<th>{$TotalEstimatedHours}</th>
-		<th>".money_format('$%i', ($TotalEstimatedHours * 75))."</th>
+		<th>".($TotalEstimatedHours * 75)."</th>
 		<th>{$TotalActualHours}</th>
-		<th>".money_format('$%i', ($TotalActualHours * 75))."</th>
+		<th>".($TotalActualHours * 75)."</th>
 	</tr>
 </table>";
 

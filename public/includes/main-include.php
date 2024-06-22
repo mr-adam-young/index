@@ -1,8 +1,15 @@
 <?php
-// app properties
-define("SITE_VERSION", "0.3.4");
+// main-include.php
+// This file is included in every page of the application
 
-$APP_NAME = "System";
+define("APP_NAME", "System");
+define("APP_VERSION", "0.3.5");
+define("APP_URL", "localhost");
+
+error_reporting(E_ALL);
+ini_set("display_errors", "On");
+
+$title = APP_NAME;
 
 // Display all errors
 ini_set('display_errors', 1);
@@ -18,7 +25,7 @@ define("DB_PASS", getenv('MYSQL_PASSWORD'));
 // log files
 define("LOG", "/var/www/html/public/log/log.html");
 define("SQL_LOG", "/var/www/html/public/log/sql.html");
-define("JSON_LOG", "/var/www/html/public/log//json.html");
+define("JSON_LOG", "/var/www/html/public/log/json.html");
 
 // financial constants
 define("TARGET_NET_PROFIT_MARGIN", 0.3);

@@ -1,12 +1,6 @@
 <?php
-error_reporting(E_ALL);
-ini_set("display_errors", "On");
-
-
-$title = "Information Management System";
 
 require 'includes/main-include.php';
-// require 'includes/app-include.php';
 require 'includes/panel-header.php';
 
 if (isset($_GET['job'])) {

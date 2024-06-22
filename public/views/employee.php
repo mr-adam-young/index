@@ -158,7 +158,7 @@ echo "<tr><td>TOTAL</td><td>".$totalhrs."</td></tr></table>";
 	$i = new DateTime();
 	$i->setTimestamp(strtotime('last Sunday')); 
 	$limit = new DateTime();
-	$limit->setTimestamp(strtotime($epoch));
+	$limit->setTimestamp(strtotime('2005-01-01'));
 	$currentURL = $_SERVER['REQUEST_URI'];
 	$uri_parts = explode('?', $currentURL, 2);
 	while ($i > $limit) {

@@ -1,12 +1,9 @@
 <?php 
 $title = "Timecard Test";
 
-require '/srv/isme.interversal.systems/includes/main-include.php';
-require '/srv/isme.interversal.systems/includes/panel-header.php';
-?>
-          
-<?php require '/srv/isme.interversal.systems/views/timecard.php'; ?>
+require 'includes/main-include.php';
+require 'includes/panel-header.php';
 
+require 'views/timecard.php';
 
-<?php
-require '/srv/isme.interversal.systems/includes/panel-footer.php'; 
+require 'includes/panel-footer.php'; 
