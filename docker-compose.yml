@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: ctiprov
+    volumes:
+      - .:/var/www/html
+    ports:
+      - "80:80"
+    environment:
+      - APP_ENV=local
+      - APP_DEBUG=true
+      - APP_KEY=base64:YOUR_APP_KEY
+      - COMPOSER_ALLOW_SUPERUSER=1
+    networks:
+      - app-network
+    command: bash -c "composer install --no-dev --optimize-autoloader && apache2-foreground"
+
+networks:
+  app-network:
