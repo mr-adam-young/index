@@ -16,9 +16,9 @@ define("DB_USER", getenv('MYSQL_USER'));
 define("DB_PASS", getenv('MYSQL_PASSWORD'));
 
 // log files
-define("LOG", "../log/log.html");
-define("SQL_LOG", "../log/sql.html");
-define("JSON_LOG", "../log/json.html");
+define("LOG", "/var/www/html/public/log/log.html");
+define("SQL_LOG", "/var/www/html/public/log/sql.html");
+define("JSON_LOG", "/var/www/html/public/log//json.html");
 
 // financial constants
 define("TARGET_NET_PROFIT_MARGIN", 0.3);
