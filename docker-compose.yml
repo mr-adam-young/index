@@ -5,7 +5,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: ctiprov
+    container_name: system
     volumes:
       - .:/var/www/html
     ports:
@@ -17,7 +17,7 @@ services:
       - COMPOSER_ALLOW_SUPERUSER=1
     networks:
       - app-network
-    command: bash -c "composer install --no-dev --optimize-autoloader && apache2-foreground"
+    # command: bash -c "composer install --no-dev --optimize-autoloader && apache2-foreground"
 
 networks:
   app-network:

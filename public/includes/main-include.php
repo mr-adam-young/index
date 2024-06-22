@@ -13,9 +13,9 @@ define("DB_USER", "");
 define("DB_PASS", "");
 
 // log files
-define("LOG", SITE_DIR."/log/log.html");
-define("SQL_LOG", "log/sql.html");
-define("JSON_LOG", "log/json.html");
+define("LOG", "../log/log.html");
+define("SQL_LOG", "../log/sql.html");
+define("JSON_LOG", "../log/json.html");
 
 // financial constants
 define("TARGET_NET_PROFIT_MARGIN", 0.3);
