@@ -1,16 +1,19 @@
 <?php
 // app properties
 define("SITE_VERSION", "0.3.4");
-define("SITE_ROOT", "https://isme.interversal.systems");
-define("SITE_DIR", "/srv/www/isme.interversal.systems");
 
-$APP_NAME = "";
+$APP_NAME = "System";
+
+// Display all errors
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
 // database connection
-define("DB_HOST", "");
-define("DB_NAME", "");
-define("DB_USER", "");
-define("DB_PASS", "");
+define("DB_HOST", getenv('MYSQL_HOST'));
+define("DB_NAME", getenv('MYSQL_DATABASE'));
+define("DB_USER", getenv('MYSQL_USER'));
+define("DB_PASS", getenv('MYSQL_PASSWORD'));
 
 // log files
 define("LOG", "../log/log.html");

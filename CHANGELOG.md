@@ -6,6 +6,9 @@ Renamed to former colloquial name from its "hidden" name.
 
 ### Added
 
+- Archived database from 0.3.4 original environment to ./sql_dumps
+- Docker environment now supports database
+
 ### Changed
 
 - Created public directory and moved all public files there

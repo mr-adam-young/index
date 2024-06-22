@@ -1,7 +1,22 @@
-version: '3.8'
-
 services:
-  app:
+  mysql:
+    image: mysql:8.0
+    container_name: system_mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password_here
+      MYSQL_DATABASE: system_db
+      MYSQL_USER: system_user
+      MYSQL_PASSWORD: user_password_here
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./sql_dumps:/docker-entrypoint-initdb.d
+    ports:
+      - "3306:3306"
+    networks:
+      - app-network
+
+  system:
     build:
       context: .
       dockerfile: Dockerfile
@@ -15,9 +30,17 @@ services:
       - APP_DEBUG=true
       - APP_KEY=base64:YOUR_APP_KEY
       - COMPOSER_ALLOW_SUPERUSER=1
+      - MYSQL_HOST=mysql
+      - MYSQL_USER=system_user
+      - MYSQL_PASSWORD=user_password_here
+      - MYSQL_DATABASE=system_db
     networks:
       - app-network
     # command: bash -c "composer install --no-dev --optimize-autoloader && apache2-foreground"
 
 networks:
   app-network:
+
+volumes:
+  mysql_data:
+  

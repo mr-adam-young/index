@@ -1,12 +1,10 @@
 <?php
 header('Content-type: application/json');
-include '/srv/www/isme.interversal.systems/includes/main-include.php';
+include 'includes/main-include.php';
 
 ob_start();
 
 $dbResult = "";
-
-// echo "<hr><p>".date('l jS \of F Y h:i:s A')."</p>";
 
 $fromClient = json_decode(urldecode($_SERVER['QUERY_STRING']), true);
 
