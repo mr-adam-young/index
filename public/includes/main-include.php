@@ -7,10 +7,10 @@ define("SITE_DIR", "/srv/www/isme.interversal.systems");
 $APP_NAME = "";
 
 // database connection
-define("DB_HOST", "interversal.chpbdpdleafb.us-east-2.rds.amazonaws.com");
-define("DB_NAME", "isme");
-define("DB_USER", "ayoung");
-define("DB_PASS", "ii7*KEZIA00");
+define("DB_HOST", "");
+define("DB_NAME", "");
+define("DB_USER", "");
+define("DB_PASS", "");
 
 // log files
 define("LOG", SITE_DIR."/log/log.html");

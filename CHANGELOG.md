@@ -6,6 +6,8 @@
 
 ### Changed
 
+- Created public directory and moved all public files there
+
 ### Deprecated
 
 ### Removed
