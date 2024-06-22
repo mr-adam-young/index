@@ -1,0 +1,4 @@
+#AuthName "Hess Ornamental Iron System"
+#AuthType Basic
+#AuthUserFile /srv/isme.interversal.systems/.htpasswd
+#require valid-user
