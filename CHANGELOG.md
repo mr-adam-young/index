@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+Renamed to former colloquial name from its "hidden" name.
+
 ### Added
 
 ### Changed
