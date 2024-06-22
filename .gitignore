@@ -3,4 +3,4 @@ data/**
 log/**
 assets/**
 .trash/**
-vendor/
+/vendor/
