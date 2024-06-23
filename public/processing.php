@@ -28,6 +28,7 @@ if($fromClient['data'] == "active_jobs") {
 }
 
 // Delete a job from the main page
+/*
 if ($fromClient['data'] == "delete") {
 	$sql = "DELETE FROM Jobs WHERE ID='".$fromClient['query']."'";
 
@@ -40,7 +41,7 @@ if ($fromClient['data'] == "delete") {
 
 	$dbResult = json_encode($arr);
 }
-
+*/
 
 if ($fromClient['data'] == "picketSpacing") {
 
@@ -178,4 +179,3 @@ if (!empty($_POST)) {
 // ISLog(ob_get_clean());
 
 echo $dbResult;
-?>
