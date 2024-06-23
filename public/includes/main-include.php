@@ -9,7 +9,8 @@ define("APP_URL", "localhost");
 error_reporting(E_ALL);
 ini_set("display_errors", "On");
 
-$title = APP_NAME;
+// set default title
+$title = APP_NAME . " " . APP_VERSION;
 
 // Display all errors
 ini_set('display_errors', 1);
@@ -49,7 +50,6 @@ function db($sql, $multipleRows = true, $fetch = true ) {
 
 	$connection->close();
 	if ($fetch == true) {
-		
 		if ($multipleRows == true) {
 			$rows = array();
 			while ($row = $result->fetch_assoc()) {
