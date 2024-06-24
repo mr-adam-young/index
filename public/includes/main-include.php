@@ -6,8 +6,9 @@ define("APP_NAME", "System");
 define("APP_VERSION", "0.3.5");
 define("APP_URL", "localhost");
 
-error_reporting(E_ALL);
-ini_set("display_errors", "On");
+// error_reporting(E_ALL);
+
+ini_set("display_errors", "Off");
 
 // set default title
 $title = APP_NAME . " " . APP_VERSION;

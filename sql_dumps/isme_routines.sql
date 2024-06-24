@@ -32,7 +32,7 @@
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`ayoung`@`%` PROCEDURE `EstimateMigrate`()
+CREATE DEFINER=`system_user`@`%` PROCEDURE `EstimateMigrate`()
 BEGIN
 	DECLARE done INT DEFAULT FALSE;
     DECLARE varLaborTypeID INT;
@@ -69,7 +69,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`ayoung`@`%` PROCEDURE `LaborMigrate`()
+CREATE DEFINER=`system_user`@`%` PROCEDURE `LaborMigrate`()
 BEGIN
 	DECLARE done INT DEFAULT FALSE;
     DECLARE varID INT;
@@ -108,7 +108,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`ayoung`@`%` PROCEDURE `MigrateEmbeddedStatuses`()
+CREATE DEFINER=`system_user`@`%` PROCEDURE `MigrateEmbeddedStatuses`()
 BEGIN
 	-- for loop
 	DECLARE done INT DEFAULT FALSE;
@@ -152,7 +152,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`ayoung`@`%` PROCEDURE `ProjectSummary`()
+CREATE DEFINER=`system_user`@`%` PROCEDURE `ProjectSummary`()
 BEGIN
 	-- for loop
 	DECLARE done INT DEFAULT FALSE;

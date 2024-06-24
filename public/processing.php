@@ -2,115 +2,60 @@
 header('Content-type: application/json');
 include 'includes/main-include.php';
 
-ob_start();
+// $fromClient = json_decode(urldecode($_SERVER['QUERY_STRING']), true);
 
-$dbResult = "";
+switch($_GET['data']) {
+    case 'accounts':
+        $dbResult = json_encode(hessdbq("SELECT ID, Title FROM Jobs"));
+        break;
+    case 'job':
+        $dbResult = json_encode(db("SELECT * FROM Jobs WHERE ID='".$fromClient['query']."'"));
+        break;
+    case 'active_jobs':
+        $connection = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+        $sql = "CALL ProjectSummary();";
+        ISLog($sql);
+        $connection->query($sql);
+        $connection->close();
+        
+        $dbResult = json_encode(db("SELECT * FROM Jobs INNER JOIN StatusCodes ON Jobs.Status=StatusCodes.Value WHERE Status<100 AND Status>0"));
+        break;
+    case 'picketSpacing':
+        $openings = ceil(($gap + $picket)/4);
+        $picketsPerSection = $openings - 1;
+        $picketGap = ($gap - ($picketsPerSection * $picket))/$openings;
+        if ($picketGap > 4 && $commercial == true) {
+            die ("picket spacing violates code!!");
+        } elseif ($picketGap > 5) {
+        }
+        $rise; $rise2; $run; $nose;
+        $calcNose = sqrt( ( $rise ** 2 ) + ( $run ** 2 ) );
 
-$fromClient = json_decode(urldecode($_SERVER['QUERY_STRING']), true);
+        $dbResult = json_encode(hessdbq("SELECT * FROM Jobs WHERE ID='".$fromClient['query']."'"));
+        break;
+    case 'statusUpdate':
+        ISLog("<p>RECEIVED AJAX REQUEST</p>");
 
-if ($fromClient['data'] == "accounts") {
-	$dbResult = json_encode(hessdbq("SELECT ID, Title FROM Jobs"));
-}
+        // add an entry to the status updates table
+        $sql = "INSERT INTO JobStatus (StatusJobID, StatusCode, StatusDate) VALUES ('".$fromClient['job']."', ".$fromClient['code'].", NOW() )";
+        ISLog($sql);
+        // update the actual job
+        
 
-if ($fromClient['data'] == "job") {
-	$dbResult = json_encode(db("SELECT * FROM Jobs WHERE ID='".$fromClient['query']."'"));
-}
+        $sql2 = "UPDATE Jobs SET Status=".$fromClient['code'].", lastUpdated=NOW() WHERE ID='".$fromClient['job']."'";
+        ISLog($sql2);
 
-if($fromClient['data'] == "active_jobs") {
-	// recalculate labor data
-	$connection = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
-	$sql = "CALL ProjectSummary();";
-	ISLog($sql);
-	$connection->query($sql);
-	$connection->close();
-	
-	$dbResult = json_encode(db("SELECT * FROM Jobs INNER JOIN StatusCodes ON Jobs.Status=StatusCodes.Value WHERE Status<100 AND Status>0"));
-}
+        $connection = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+        $result = $connection->query($sql);
+        $result = $connection->query($sql2);
+        $connection->close();
 
-// Delete a job from the main page
-/*
-if ($fromClient['data'] == "delete") {
-	$sql = "DELETE FROM Jobs WHERE ID='".$fromClient['query']."'";
+        $response = array (
+            'status' => $fromClient['code']
+        );
 
-	$connection = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
-	$result = $connection->query($sql);
-	$connection->close();
-	$arr = array(
-		'status' => 'success'
-	);
-
-	$dbResult = json_encode($arr);
-}
-*/
-
-if ($fromClient['data'] == "picketSpacing") {
-
-	// Derived
-	$openings = ceil(($gap + $picket)/4);
-	$picketsPerSection = $openings - 1;
-	$picketGap = ($gap - ($picketsPerSection * $picket))/$openings;
-	if ($picketGap > 4 && $commercial == true) {
-		die ("picket spacing violates code!!");
-	} elseif ($picketGap > 5) {
-	}
-	$rise; $rise2; $run; $nose;
-	$calcNose = sqrt( ( $rise ** 2 ) + ( $run ** 2 ) );
-
-	$dbResult = json_encode(hessdbq("SELECT * FROM Jobs WHERE ID='".$fromClient['query']."'"));
-} 
-
-if ($fromClient['data'] == "statusUpdate") {
-
-	ISLog("<p>RECEIVED AJAX REQUEST</p>");
-
-	// add an entry to the status updates table
-	$sql = "INSERT INTO JobStatus (StatusJobID, StatusCode, StatusDate) VALUES ('".$fromClient['job']."', ".$fromClient['code'].", NOW() )";
-	ISLog($sql);
-	// update the actual job
-	
-
-	$sql2 = "UPDATE Jobs SET Status=".$fromClient['code'].", lastUpdated=NOW() WHERE ID='".$fromClient['job']."'";
-	ISLog($sql2);
-
-	$connection = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
-	$result = $connection->query($sql);
-	$result = $connection->query($sql2);
-	$connection->close();
-
-	$response = array (
-		'status' => $fromClient['code']
-	);
-
-	$dbResult = json_encode($response);
-}
-
-if ($_SERVER['REQUEST_METHOD'] == 'DELETE') {
-	ISLog("detected a DELETE method");
-	if (isset($_GET['entry'])) {
-		$connection = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
-		$sql = "DELETE FROM LaborNew WHERE LaborID=".$_GET['entry'];
-		ISLog($sql);
-		$connection->query($sql);
-    $dbResult = json_encode(array("code => 200"));
-	} elseif (isset($_GET['invoice'])) {
-   		$connection = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
-		$sql = "DELETE FROM Costing WHERE ID=".$_GET['invoice'];
-		ISLog($sql);
-		$connection->query($sql);
-    $dbResult = json_encode(array("code => 200"));
-   } elseif (isset($_GET['estimate'])) {
-		$connection = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
-		$sql = "DELETE FROM LaborEstimates WHERE LaborEstimateID=".$_GET['estimate'];
-		ISLog($sql);
-		$connection->query($sql);
-		$dbResult = json_encode(array("code => 200"));
-	} elseif (isset($_GET['costing_estimate'])) {
-			$connection = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
-			$sql = "DELETE FROM CostingEstimates WHERE ID=".$_GET['costing_estimate'];
-			ISLog($sql);
-			$connection->query($sql);
-			$dbResult = json_encode(array("code => 200"));
-	}
+        $dbResult = json_encode($response);
+        break;
 }
 
 if (!empty($_POST)) {
@@ -175,7 +120,5 @@ if (!empty($_POST)) {
 			echo "malformed POST data";
 	}
 }
-
-// ISLog(ob_get_clean());
 
 echo $dbResult;
