@@ -13,9 +13,9 @@
     <!-- drawn by javascript -->
 </div>
 
-<script>
-var data;
-var theJobs = [];
+<script type="text/javascript">
+let data;
+let cache;
 var perPage = 4;
 var position = 0;
 var HTMLColorArr = [0, 0, 0];
@@ -40,20 +40,20 @@ async function fetchData() {
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
-        const data = await response.json();
-        console.log("Data fetched.");
+        data = await response.json();
     } catch (error) {
         console.error('Error fetching data:', error);
     }
 }
 
 // advance the page
-function turnPage() {
+async function turnPage() {
+    await fetchData();
     const $dynamic = $("#dynamic");
     $dynamic.empty();
 
     // start over if we reach the end
-    if (position >= theJobs.length) {
+    if (position >= data.length) {
         position = 0;
     }
 
@@ -61,8 +61,10 @@ function turnPage() {
     const BreakEvenRatio = 1 + (TargetProfitMargin / (1 - TargetProfitMargin));
 
     for (i = 0; i < perPage; i++) {
-        console.log(data);
-        var val = data[position + 3];
+        console.log(data[i + position]);
+        cursor = i + position;
+
+        val = data[cursor];
         const Appearance = val['Status'] > 22 ? 'container' : 'container-inactive';
         const Progress = val['ActualHours'] / (val['EstimatedHours'] * BreakEvenRatio);
         let HoursDifference = val['EstimatedHours'] - val['ActualHours'];
@@ -105,8 +107,6 @@ function turnPage() {
 }
 
 $(document).ready(function() {
-    fetchData();
-    setInterval(fetchData, 1000000);
     turnPage();
     setInterval(turnPage, 12000);
 
