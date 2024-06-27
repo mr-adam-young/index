@@ -25,7 +25,7 @@ require 'includes/panel-header.php';
 
 require 'views/misc.php';
 
-require 'documents/changelog.htm';
+require '../CHANGELOG.md';
 
 ?>
 

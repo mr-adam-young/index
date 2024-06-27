@@ -1,0 +1,92 @@
+2024-06-25 15:27:37 : CALL ProjectSummary();
+2024-06-25 15:27:25 : CALL ProjectSummary();
+2024-06-25 15:27:13 : CALL ProjectSummary();
+2024-06-25 15:27:01 : CALL ProjectSummary();
+2024-06-25 15:26:49 : CALL ProjectSummary();
+2024-06-25 15:26:37 : CALL ProjectSummary();
+2024-06-25 15:26:25 : CALL ProjectSummary();
+2024-06-25 15:26:13 : CALL ProjectSummary();
+2024-06-25 15:26:01 : CALL ProjectSummary();
+2024-06-25 15:25:49 : CALL ProjectSummary();
+2024-06-25 15:25:37 : CALL ProjectSummary();
+2024-06-25 15:25:25 : CALL ProjectSummary();
+2024-06-25 15:25:13 : CALL ProjectSummary();
+2024-06-25 15:25:01 : CALL ProjectSummary();
+2024-06-25 15:24:49 : CALL ProjectSummary();
+2024-06-25 15:24:37 : CALL ProjectSummary();
+2024-06-25 15:24:25 : CALL ProjectSummary();
+2024-06-25 15:24:13 : CALL ProjectSummary();
+2024-06-25 15:24:01 : CALL ProjectSummary();
+2024-06-25 15:23:49 : CALL ProjectSummary();
+2024-06-25 15:23:37 : CALL ProjectSummary();
+2024-06-25 15:23:25 : CALL ProjectSummary();
+2024-06-25 15:23:13 : CALL ProjectSummary();
+2024-06-25 15:23:03 : CALL ProjectSummary();
+2024-06-25 15:22:37 : CALL ProjectSummary();
+2024-06-25 15:22:26 : CALL ProjectSummary();
+2024-06-25 15:22:14 : CALL ProjectSummary();
+2024-06-25 15:22:01 : CALL ProjectSummary();
+2024-06-25 15:21:49 : CALL ProjectSummary();
+2024-06-25 15:21:37 : CALL ProjectSummary();
+2024-06-25 15:21:25 : CALL ProjectSummary();
+2024-06-24 20:48:56 : CALL ProjectSummary();
+2024-06-24 20:48:53 : CALL ProjectSummary();
+2024-06-24 01:28:31 : CALL ProjectSummary();
+2024-06-24 01:27:31 : CALL ProjectSummary();
+2024-06-24 01:26:31 : CALL ProjectSummary();
+2024-06-24 01:25:31 : CALL ProjectSummary();
+2024-06-24 01:24:44 : CALL ProjectSummary();
+2024-06-24 01:24:32 : CALL ProjectSummary();
+2024-06-24 01:24:20 : CALL ProjectSummary();
+2024-06-24 01:24:08 : CALL ProjectSummary();
+2024-06-24 01:23:56 : CALL ProjectSummary();
+2024-06-24 01:23:44 : CALL ProjectSummary();
+2024-06-24 01:23:32 : CALL ProjectSummary();
+2024-06-24 01:23:20 : CALL ProjectSummary();
+2024-06-24 01:23:08 : db(): SELECT * FROM Jobs INNER JOIN StatusCodes ON Jobs.Status=StatusCodes.Value WHERE Status<100 AND Status>0
+
+2024-06-24 01:23:08 : CALL ProjectSummary();
+2024-06-24 01:22:56 : db(): SELECT * FROM Jobs INNER JOIN StatusCodes ON Jobs.Status=StatusCodes.Value WHERE Status<100 AND Status>0
+
+2024-06-24 01:22:56 : CALL ProjectSummary();
+2024-06-24 01:22:44 : db(): SELECT * FROM Jobs INNER JOIN StatusCodes ON Jobs.Status=StatusCodes.Value WHERE Status<100 AND Status>0
+
+2024-06-24 01:22:44 : CALL ProjectSummary();
+2024-06-24 01:22:32 : db(): SELECT * FROM Jobs INNER JOIN StatusCodes ON Jobs.Status=StatusCodes.Value WHERE Status<100 AND Status>0
+
+2024-06-24 01:22:32 : CALL ProjectSummary();
+2024-06-24 01:22:20 : db(): SELECT * FROM Jobs INNER JOIN StatusCodes ON Jobs.Status=StatusCodes.Value WHERE Status<100 AND Status>0
+
+2024-06-24 01:22:20 : CALL ProjectSummary();
+2024-06-24 01:22:08 : db(): SELECT * FROM Jobs INNER JOIN StatusCodes ON Jobs.Status=StatusCodes.Value WHERE Status<100 AND Status>0
+
+2024-06-24 01:22:08 : CALL ProjectSummary();
+2024-06-24 01:21:56 : db(): SELECT * FROM Jobs INNER JOIN StatusCodes ON Jobs.Status=StatusCodes.Value WHERE Status<100 AND Status>0
+
+2024-06-24 01:21:56 : CALL ProjectSummary();
+2024-06-24 01:21:44 : db(): SELECT * FROM Jobs INNER JOIN StatusCodes ON Jobs.Status=StatusCodes.Value WHERE Status<100 AND Status>0
+
+2024-06-24 01:21:44 : CALL ProjectSummary();
+2024-06-24 01:21:32 : db(): SELECT * FROM Jobs INNER JOIN StatusCodes ON Jobs.Status=StatusCodes.Value WHERE Status<100 AND Status>0
+
+
+2024-06-24 01:21:32 : CALL ProjectSummary();
+2024-06-24 01:21:20 : db(): SELECT * FROM Jobs INNER JOIN StatusCodes ON Jobs.Status=StatusCodes.Value WHERE Status<100 AND Status>0
+SQL Error: 
+
+2024-06-24 01:21:20 : CALL ProjectSummary();
+2024-06-24 01:21:08 : db(): SELECT * FROM Jobs INNER JOIN StatusCodes ON Jobs.Status=StatusCodes.Value WHERE Status<100 AND Status>0
+SQL Error: 
+
+2024-06-24 01:21:08 : CALL ProjectSummary();
+2024-06-24 01:20:56 : <b>db():</b> SELECT * FROM Jobs INNER JOIN StatusCodes ON Jobs.Status=StatusCodes.Value WHERE Status<100 AND Status>0<div style="color:#F00;"></div>
+2024-06-24 01:20:56 : CALL ProjectSummary();
+2024-06-24 01:20:44 : <b>db():</b> SELECT * FROM Jobs INNER JOIN StatusCodes ON Jobs.Status=StatusCodes.Value WHERE Status<100 AND Status>0<div style="color:#F00;"></div>
+2024-06-24 01:20:44 : CALL ProjectSummary();
+2024-06-24 01:20:32 : <b>db():</b> SELECT * FROM Jobs INNER JOIN StatusCodes ON Jobs.Status=StatusCodes.Value WHERE Status<100 AND Status>0<div style="color:#F00;"></div>
+2024-06-24 01:20:32 : CALL ProjectSummary();
+2024-06-24 01:20:20 : <b>db():</b> SELECT * FROM Jobs INNER JOIN StatusCodes ON Jobs.Status=StatusCodes.Value WHERE Status<100 AND Status>0<div style="color:#F00;"></div>
+2024-06-24 01:20:20 : CALL ProjectSummary();
+2024-06-24 01:20:08 : <b>db():</b> SELECT * FROM Jobs INNER JOIN StatusCodes ON Jobs.Status=StatusCodes.Value WHERE Status<100 AND Status>0<div style="color:#F00;"></div>
+2024-06-24 01:20:08 : CALL ProjectSummary();
+<p style="font-size:1em; border-bottom:1px #CCC solid; margin:0;">Monday June 24 2024 01:19:56 AM <b>db():</b> SELECT * FROM Jobs INNER JOIN StatusCodes ON Jobs.Status=StatusCodes.Value WHERE Status<100 AND Status>0<div style="color:#F00;"></div></p><p style="font-size:1em; border-bottom:1px #CCC solid; margin:0;">Monday June 24 2024 01:19:56 AM CALL ProjectSummary();</p><p style="font-size:1em; border-bottom:1px #CCC solid; margin:0;">Monday June 24 2024 01:19:44 AM <b>db():</b> SELECT * FROM Jobs INNER JOIN StatusCodes ON Jobs.Status=StatusCodes.Value WHERE Status<100 AND Status>0<div style="color:#F00;"></div></p><p style="font-size:1em; border-bottom:1px #CCC solid; margin:0;">Monday June 24 2024 01:19:44 AM CALL ProjectSummary();</p><p style="font-size:1em; border-bottom:1px #CCC solid; margin:0;">Monday June 24 2024 01:19:32 AM <b>db():</b> SELECT * FROM Jobs INNER JOIN StatusCodes ON Jobs.Status=StatusCodes.Value WHERE Status<100 AND Status>0<div style="color:#F00;"></div></p><p style="font-size:1em; border-bottom:1px #CCC solid; margin:0;">Monday June 24 2024 01:19:32 AM CALL ProjectSummary();</p><p style="font-size:1em; border-bottom:1px #CCC solid; margin:0;">Monday June 24 2024 01:19:20 AM <b>db():</b> SELECT * FROM Jobs INNER JOIN StatusCodes ON Jobs.Status=StatusCodes.Value WHERE Status<100 AND Status>0<div style="color:#F00;"></div></p><p style="font-size:1em; border-bottom:1px #CCC solid; margin:0;">Monday June 24 2024 01:19:20 AM CALL ProjectSummary();</p><p style="font-size:1em; border-bottom:1px #CCC solid; margin:0;">Monday June 24 2024 01:19:08 AM <b>db():</b> SELECT * FROM Jobs INNER JOIN StatusCodes ON Jobs.Status=StatusCodes.Value WHERE Status<100 AND Status>0<div style="color:#F00;"></div></p><p style="font-size:1em; border-bottom:1px #CCC solid; margin:0;">Monday June 24 2024 01:19:08 AM CALL ProjectSummary();</p><p style="font-size:1em; border-bottom:1px #CCC solid; margin:0;">Monday June 24 2024 01:18:56 AM <b>db():</b> SELECT * FROM Jobs INNER JOIN StatusCodes ON Jobs.Status=StatusCodes.Value WHERE Status<100 AND Status>0<div style="color:#F00;"></div></p><p style="font-size:1em; border-bottom:1px #CCC solid; margin:0;">Monday June 24 2024 01:18:56 AM CALL ProjectSummary();</p>

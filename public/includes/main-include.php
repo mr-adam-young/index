@@ -25,9 +25,9 @@ define("DB_USER", getenv('MYSQL_USER'));
 define("DB_PASS", getenv('MYSQL_PASSWORD'));
 
 // log files
-define("LOG", "/var/www/html/public/log/log.html");
-define("SQL_LOG", "/var/www/html/public/log/sql.html");
-define("JSON_LOG", "/var/www/html/public/log/json.html");
+define("LOG", "log/system.log");
+define("SQL_LOG", "log/sql.log");
+define("JSON_LOG", "log/json.log");
 
 // financial constants
 define("TARGET_NET_PROFIT_MARGIN", 0.3);
@@ -41,13 +41,13 @@ define("CLIENT_ID", "844461726006-h9o1vgij5vim8v32tcfhais08erajd93.apps.googleus
 function db($sql, $multipleRows = true, $fetch = true ) {
 	$connection = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 		if ($connection->connect_errno) {
-			ISLog("<div class=\"warning\">Failed to connect to MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error . "<p>" . $mysqli->host_info . "</p></div>");
+			ISLog("Failed to connect to MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error . " " . $mysqli->host_info . " ");
 		}
 	$result = $connection->query($sql);
 
 	// log to file
-	$log = "<b>db():</b> ".$sql."<div style=\"color:#F00;\">".$connection->error."</div>";
-	ISLog($log);
+	$log = $connection->error . " " . $sql;
+	ISLog($log, SQL_LOG);
 
 	$connection->close();
 	if ($fetch == true) {
@@ -92,7 +92,15 @@ function quickTable($array, $passedColumns = false) {
 }
 
 function ISLog($writeto, $target = LOG) {
-	$writeto = "<p style=\"font-size:1em; border-bottom:1px #CCC solid; margin:0;\">".date('l F j Y h:i:s A')." ".$writeto."</p>";
+	$writeto = date('Y-m-d H:i:s')." : ".$writeto."\n";
+	// $writeto .= file_get_contents($target);
+	// file_put_contents($target, $writeto);
+    // write to end of file
+    file_put_contents($target, $writeto, FILE_APPEND);
+}
+
+function log_reverse($writeto, $target = LOG) {
+	$writeto = date('Y-m-d H:i:s')." : ".$writeto."\n";
 	$writeto .= file_get_contents($target);
 	file_put_contents($target, $writeto);
 }

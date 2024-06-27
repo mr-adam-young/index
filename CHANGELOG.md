@@ -12,6 +12,8 @@ Renamed to former colloquial name from its "hidden" name.
 ### Changed
 
 - Created public directory and moved all public files there
+- Had to change the way board.php retrieves data asynchronously
+- Trim output of logging functions
 
 ### Deprecated
 
