@@ -1,0 +1,7 @@
+{
+    "require": {
+        "stefanak-michal/bolt": "^2.1",
+        "vlucas/phpdotenv": "^5.3",
+        "chillerlan/php-qrcode": "^4.3"
+    }
+}
