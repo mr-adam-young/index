@@ -17,4 +17,17 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+/* routes to legacy PHP scripts */
+Route::get('/legacy/{filename}', function ($filename) {
+    $file = base_path('legacy/' . $filename . '.php');
+
+    if (file_exists($file)) {
+        ob_start();
+        include $file;
+        return ob_get_clean();
+    }
+
+    abort(404, 'File not found');
+})->where('filename', '.*');
+
 require __DIR__.'/auth.php';
