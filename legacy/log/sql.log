@@ -1,0 +1,121 @@
+2024-06-25 15:27:37 : db(): SELECT * FROM Jobs INNER JOIN StatusCodes ON Jobs.Status=StatusCodes.Value WHERE Status<100 AND Status>0
+
+2024-06-25 15:27:25 : db(): SELECT * FROM Jobs INNER JOIN StatusCodes ON Jobs.Status=StatusCodes.Value WHERE Status<100 AND Status>0
+
+2024-06-25 15:27:13 : db(): SELECT * FROM Jobs INNER JOIN StatusCodes ON Jobs.Status=StatusCodes.Value WHERE Status<100 AND Status>0
+
+2024-06-25 15:27:01 : db(): SELECT * FROM Jobs INNER JOIN StatusCodes ON Jobs.Status=StatusCodes.Value WHERE Status<100 AND Status>0
+
+2024-06-25 15:26:49 : db(): SELECT * FROM Jobs INNER JOIN StatusCodes ON Jobs.Status=StatusCodes.Value WHERE Status<100 AND Status>0
+
+2024-06-25 15:26:37 : db(): SELECT * FROM Jobs INNER JOIN StatusCodes ON Jobs.Status=StatusCodes.Value WHERE Status<100 AND Status>0
+
+2024-06-25 15:26:25 : db(): SELECT * FROM Jobs INNER JOIN StatusCodes ON Jobs.Status=StatusCodes.Value WHERE Status<100 AND Status>0
+
+2024-06-25 15:26:13 : db(): SELECT * FROM Jobs INNER JOIN StatusCodes ON Jobs.Status=StatusCodes.Value WHERE Status<100 AND Status>0
+
+2024-06-25 15:26:01 : db(): SELECT * FROM Jobs INNER JOIN StatusCodes ON Jobs.Status=StatusCodes.Value WHERE Status<100 AND Status>0
+
+2024-06-25 15:25:49 : db(): SELECT * FROM Jobs INNER JOIN StatusCodes ON Jobs.Status=StatusCodes.Value WHERE Status<100 AND Status>0
+
+2024-06-25 15:25:37 : db(): SELECT * FROM Jobs INNER JOIN StatusCodes ON Jobs.Status=StatusCodes.Value WHERE Status<100 AND Status>0
+
+2024-06-25 15:25:25 : db(): SELECT * FROM Jobs INNER JOIN StatusCodes ON Jobs.Status=StatusCodes.Value WHERE Status<100 AND Status>0
+
+2024-06-25 15:25:13 : db(): SELECT * FROM Jobs INNER JOIN StatusCodes ON Jobs.Status=StatusCodes.Value WHERE Status<100 AND Status>0
+
+2024-06-25 15:25:01 : db(): SELECT * FROM Jobs INNER JOIN StatusCodes ON Jobs.Status=StatusCodes.Value WHERE Status<100 AND Status>0
+
+2024-06-25 15:24:49 : db(): SELECT * FROM Jobs INNER JOIN StatusCodes ON Jobs.Status=StatusCodes.Value WHERE Status<100 AND Status>0
+
+2024-06-25 15:24:37 : db(): SELECT * FROM Jobs INNER JOIN StatusCodes ON Jobs.Status=StatusCodes.Value WHERE Status<100 AND Status>0
+
+2024-06-25 15:24:25 : db(): SELECT * FROM Jobs INNER JOIN StatusCodes ON Jobs.Status=StatusCodes.Value WHERE Status<100 AND Status>0
+
+2024-06-25 15:24:13 : db(): SELECT * FROM Jobs INNER JOIN StatusCodes ON Jobs.Status=StatusCodes.Value WHERE Status<100 AND Status>0
+
+2024-06-25 15:24:01 : db(): SELECT * FROM Jobs INNER JOIN StatusCodes ON Jobs.Status=StatusCodes.Value WHERE Status<100 AND Status>0
+
+2024-06-25 15:23:49 : db(): SELECT * FROM Jobs INNER JOIN StatusCodes ON Jobs.Status=StatusCodes.Value WHERE Status<100 AND Status>0
+
+2024-06-25 15:23:37 : db(): SELECT * FROM Jobs INNER JOIN StatusCodes ON Jobs.Status=StatusCodes.Value WHERE Status<100 AND Status>0
+
+2024-06-25 15:23:25 : db(): SELECT * FROM Jobs INNER JOIN StatusCodes ON Jobs.Status=StatusCodes.Value WHERE Status<100 AND Status>0
+
+2024-06-25 15:23:13 : db(): SELECT * FROM Jobs INNER JOIN StatusCodes ON Jobs.Status=StatusCodes.Value WHERE Status<100 AND Status>0
+
+2024-06-25 15:23:03 : db(): SELECT * FROM Jobs INNER JOIN StatusCodes ON Jobs.Status=StatusCodes.Value WHERE Status<100 AND Status>0
+
+2024-06-25 15:22:37 : db(): SELECT * FROM Jobs INNER JOIN StatusCodes ON Jobs.Status=StatusCodes.Value WHERE Status<100 AND Status>0
+
+2024-06-25 15:22:26 : db(): SELECT * FROM Jobs INNER JOIN StatusCodes ON Jobs.Status=StatusCodes.Value WHERE Status<100 AND Status>0
+
+2024-06-25 15:22:14 : db(): SELECT * FROM Jobs INNER JOIN StatusCodes ON Jobs.Status=StatusCodes.Value WHERE Status<100 AND Status>0
+
+2024-06-25 15:22:01 : db(): SELECT * FROM Jobs INNER JOIN StatusCodes ON Jobs.Status=StatusCodes.Value WHERE Status<100 AND Status>0
+
+2024-06-25 15:21:49 : db(): SELECT * FROM Jobs INNER JOIN StatusCodes ON Jobs.Status=StatusCodes.Value WHERE Status<100 AND Status>0
+
+2024-06-25 15:21:37 : db(): SELECT * FROM Jobs INNER JOIN StatusCodes ON Jobs.Status=StatusCodes.Value WHERE Status<100 AND Status>0
+
+2024-06-25 15:21:25 : db(): SELECT * FROM Jobs INNER JOIN StatusCodes ON Jobs.Status=StatusCodes.Value WHERE Status<100 AND Status>0
+
+2024-06-25 15:20:50 : db(): SELECT * FROM Jobs INNER JOIN StatusCodes ON Jobs.Status=StatusCodes.Value WHERE Status > 0 AND Status < 100 ORDER BY Status ASC
+
+2024-06-25 15:20:49 : db(): SELECT * FROM Jobs INNER JOIN StatusCodes ON Jobs.Status=StatusCodes.Value ORDER BY ID DESC
+
+2024-06-25 15:20:45 : db(): SELECT * FROM Costing WHERE JobID='18-048'
+
+2024-06-25 15:20:45 : db(): SELECT LaborType, EstimatedHours, ActualHours FROM 
+(SELECT COALESCE(ELaborTypeID, ALaborTypeID) AS Coalesced, EstimatedHours, ActualHours FROM
+(SELECT LaborTypeID AS ELaborTypeID, Hours AS EstimatedHours FROM LaborEstimates WHERE JobID='18-048') as EstimateTable
+LEFT JOIN
+(SELECT LaborTypeID AS ALaborTypeID, IFNULL(SUM(Hours), 0) AS ActualHours FROM LaborNew WHERE JobID='18-048' GROUP BY LaborTypeID) as ActualTable
+ON EstimateTable.ELaborTypeID=ActualTable.ALaborTypeID
+UNION
+SELECT COALESCE(ELaborTypeID, ALaborTypeID) AS Coalesced, EstimatedHours, ActualHours FROM
+(SELECT LaborTypeID AS ELaborTypeID, Hours AS EstimatedHours FROM LaborEstimates WHERE JobID='18-048') as EstimateTable 
+RIGHT JOIN
+(SELECT LaborTypeID AS ALaborTypeID, IFNULL(SUM(Hours), 0) AS ActualHours FROM LaborNew WHERE JobID='18-048' GROUP BY LaborTypeID) as ActualTable
+ON EstimateTable.ELaborTypeID=ActualTable.ALaborTypeID) as Alias INNER JOIN LaborTypes ON Alias.Coalesced=LaborTypes.ID
+
+2024-06-25 15:20:45 : db(): SELECT * FROM CostingEstimates WHERE JobID='18-048'
+
+2024-06-25 15:20:45 : db(): SELECT * FROM LaborTypes
+
+2024-06-25 15:20:45 : db(): SELECT LaborEstimateID, LaborType, Hours FROM LaborEstimates INNER JOIN LaborTypes ON LaborEstimates.LaborTypeID=LaborTypes.ID WHERE JobID='18-048'
+
+2024-06-25 15:20:45 : db(): SELECT * FROM StatusCodes ORDER BY Value ASC
+
+2024-06-25 15:20:45 : db(): SELECT * FROM Jobs WHERE ID='18-048'
+
+2024-06-25 15:20:42 : db(): SELECT * FROM Jobs INNER JOIN StatusCodes ON Jobs.Status=StatusCodes.Value WHERE Status > 0 AND Status < 100 ORDER BY Status ASC
+
+2024-06-24 20:48:56 : db(): SELECT * FROM Jobs INNER JOIN StatusCodes ON Jobs.Status=StatusCodes.Value WHERE Status<100 AND Status>0
+
+2024-06-24 20:48:53 : db(): SELECT * FROM Jobs INNER JOIN StatusCodes ON Jobs.Status=StatusCodes.Value WHERE Status<100 AND Status>0
+
+2024-06-24 01:28:31 : db(): SELECT * FROM Jobs INNER JOIN StatusCodes ON Jobs.Status=StatusCodes.Value WHERE Status<100 AND Status>0
+
+2024-06-24 01:27:31 : db(): SELECT * FROM Jobs INNER JOIN StatusCodes ON Jobs.Status=StatusCodes.Value WHERE Status<100 AND Status>0
+
+2024-06-24 01:26:31 : db(): SELECT * FROM Jobs INNER JOIN StatusCodes ON Jobs.Status=StatusCodes.Value WHERE Status<100 AND Status>0
+
+2024-06-24 01:25:31 : db(): SELECT * FROM Jobs INNER JOIN StatusCodes ON Jobs.Status=StatusCodes.Value WHERE Status<100 AND Status>0
+
+2024-06-24 01:24:44 : db(): SELECT * FROM Jobs INNER JOIN StatusCodes ON Jobs.Status=StatusCodes.Value WHERE Status<100 AND Status>0
+
+2024-06-24 01:24:32 : db(): SELECT * FROM Jobs INNER JOIN StatusCodes ON Jobs.Status=StatusCodes.Value WHERE Status<100 AND Status>0
+
+2024-06-24 01:24:20 : db(): SELECT * FROM Jobs INNER JOIN StatusCodes ON Jobs.Status=StatusCodes.Value WHERE Status<100 AND Status>0
+
+2024-06-24 01:24:08 : db(): SELECT * FROM Jobs INNER JOIN StatusCodes ON Jobs.Status=StatusCodes.Value WHERE Status<100 AND Status>0
+
+2024-06-24 01:23:56 : db(): SELECT * FROM Jobs INNER JOIN StatusCodes ON Jobs.Status=StatusCodes.Value WHERE Status<100 AND Status>0
+
+2024-06-24 01:23:44 : db(): SELECT * FROM Jobs INNER JOIN StatusCodes ON Jobs.Status=StatusCodes.Value WHERE Status<100 AND Status>0
+
+2024-06-24 01:23:32 : db(): SELECT * FROM Jobs INNER JOIN StatusCodes ON Jobs.Status=StatusCodes.Value WHERE Status<100 AND Status>0
+
+2024-06-24 01:23:20 : db(): SELECT * FROM Jobs INNER JOIN StatusCodes ON Jobs.Status=StatusCodes.Value WHERE Status<100 AND Status>0
+
