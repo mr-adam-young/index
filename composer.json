@@ -6,8 +6,11 @@
     "license": "MIT",
     "require": {
         "php": "^8.2",
+        "chillerlan/php-qrcode": "^4.3",
         "laravel/framework": "^11.9",
+        "laravel/sanctum": "*",
         "laravel/tinker": "^2.9",
+        "stefanak-michal/bolt": "^2.1",
         "vlucas/phpdotenv": "^5.3"
     },
     "require-dev": {
