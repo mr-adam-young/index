@@ -1,10 +1,9 @@
 
-</div>
+</div><!-- /.container -->
 
 <footer class="main-footer">
-    <!-- /.container -->
-  </footer>
-<!-- ./wrapper -->
+
+</footer>
 
 </body>
 </html>

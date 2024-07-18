@@ -13,20 +13,20 @@
 <!-- ADD THE CLASS layout-top-nav TO REMOVE THE SIDEBAR. -->
 <body>
 <div class="container">
-<div class="row">
-	<div class="col-sm"
-	<header id="main-header">
-		<nav>
-			<ul>
-				<li><a href="index.php">Active Projects</a></li>
-				<li><a href="index.php?all=true">All Projects</a></li>
-				<li><a href="index.php?job=new">Add New Job</a></li>
-				<li><a href="board.php">Production Board</a></li>
-				<li><a href="employee.php">Employees</a></li>
-				<li><a href="misc.php">Miscellaneous</a></li>
-				<li><a href="timecard.php">Timecard Test</a></li>
-			</ul>
-		</nav>
-	</header>
-	</div class="col-sm">
-</div>
+    <div class="row">
+        <div class="col-sm">
+        <header id="main-header">
+            <nav>
+                <ul>
+                    <li><a href="index.php">Active Projects</a></li>
+                    <li><a href="index.php?all=true">All Projects</a></li>
+                    <li><a href="index.php?job=new">Add New Job</a></li>
+                    <li><a href="board.php">Production Board</a></li>
+                    <li><a href="employee.php">Employees</a></li>
+                    <li><a href="misc.php">Miscellaneous</a></li>
+                    <li><a href="timecard.php">Timecard Test</a></li>
+                </ul>
+            </nav>
+        </header>
+        </div>
+    </div>

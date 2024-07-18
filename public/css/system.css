@@ -12,6 +12,12 @@ body.homepage #header.logged_in {
     padding: 5em 0 1em 0;
 }
 
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
 /**************************************************************************************/
 
 a { color:rgb(19, 117, 88); text-decoration:none;}
@@ -228,4 +234,18 @@ section.mobile-ui button, section.mobile-ui select {
 	font-size:1em;
 	padding:10px;
 	margin:5px;
+}
+
+.jobs-table {
+    width:100%;
+    border-collapse: collapse;
+}
+.jobs-table th {
+    background-color: #333;
+    color: #FFF;
+    padding: 10px;
+}
+.jobs-table td {
+    padding: 5px;
+    border-bottom: 1px #AAA dashed;
 }

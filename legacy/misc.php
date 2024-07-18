@@ -25,8 +25,6 @@ require 'includes/panel-header.php';
 
 require 'views/misc.php';
 
-require '../CHANGELOG.md';
-
 ?>
 
 <div id="console"></div>
