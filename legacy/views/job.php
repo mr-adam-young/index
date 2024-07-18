@@ -457,7 +457,7 @@ foreach ($invoices as $invoice) {
 }
 
 echo "<tr>
-		<th>".money_format('$%i', $amount_spent)."</th>
+		<th>".$amount_spent."</th>
 		<th>Total</th>
 		<th>All Sources</th>
 	</tr>
@@ -492,10 +492,10 @@ $Billed 			= $TotalLaborCharge + $estimated_purchases;
 $NetProfit			= $Billed - ($ActualOperationCost + $amount_spent);
 $NetProfitMargin	= ($NetProfit / $Billed) * 100;
 
-echo "<h3>Billed: ".money_format('$%i', $Billed)."</h3>";
-echo "<h3>Net Profit: ".money_format('$%i', $NetProfit)."</h3>";
+echo "<h3>Billed: ".$Billed."</h3>";
+echo "<h3>Net Profit: ".$NetProfit."</h3>";
 echo "<h3>Net Profit Margin: {$NetProfitMargin}%</h3>";
-echo "<h3>Cost Per Foot: ".money_format('$%i', ($Billed/$job['Length']))."</h3>";
+echo "<h3>Cost Per Foot: ".($Billed/$job['Length'])."</h3>";
 
 // commit calculations to the database
 

@@ -1,6 +1,6 @@
 # Changelog
 
-## [Unreleased]
+## [0.4.0] [Unreleased]
 
 Renamed to former colloquial name from its "hidden" name.
 

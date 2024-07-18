@@ -12,7 +12,7 @@ switch($_GET['data']) {
         $dbResult = json_encode(db("SELECT * FROM Jobs WHERE ID='".$fromClient['query']."'"));
         break;
     case 'active_jobs':
-        $connection = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+        $connection = new mysqli($_ENV['DB_HOST'], $_ENV['DB_USERNAME'], $_ENV['DB_PASSWORD'], $_ENV['DB_DATABASE']);
         $sql = "CALL ProjectSummary();";
         ISLog($sql);
         $connection->query($sql);
@@ -45,7 +45,7 @@ switch($_GET['data']) {
         $sql2 = "UPDATE Jobs SET Status=".$fromClient['code'].", lastUpdated=NOW() WHERE ID='".$fromClient['job']."'";
         ISLog($sql2);
 
-        $connection = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+        $connection = new mysqli($_ENV['DB_HOST'], $_ENV['DB_USERNAME'], $_ENV['DB_PASSWORD'], $_ENV['DB_DATABASE']);
         $result = $connection->query($sql);
         $result = $connection->query($sql2);
         $connection->close();
@@ -62,7 +62,7 @@ if (!empty($_POST)) {
 	switch ($_POST['request_type']) {
 		case 'labor':
 			// mysqli->prepare
-			$connection = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+			$connection = new mysqli($_ENV['DB_HOST'], $_ENV['DB_USERNAME'], $_ENV['DB_PASSWORD'], $_ENV['DB_DATABASE']);
 			$statement = $connection->prepare("INSERT INTO LaborNew (EmployeeID, LaborTypeID, JobID, Hours, Date) VALUES (?,?,?,?,FROM_UNIXTIME(?))");
 			$statement->bind_param("iisdi", $_POST['employee_id'], $_POST['work_type'], $_POST['job_id'], $_POST['work_hours'], $_POST['work_date']);
 
@@ -76,7 +76,7 @@ if (!empty($_POST)) {
       break;
  		case 'invoice':
 			// mysqli->prepare
-			$connection = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+			$connection = new mysqli($_ENV['DB_HOST'], $_ENV['DB_USERNAME'], $_ENV['DB_PASSWORD'], $_ENV['DB_DATABASE']);
 			$statement = $connection->prepare("INSERT INTO Costing (JobID, Cost, Description, Vendor) VALUES (?,?,?,?)");
 			$statement->bind_param("sdss", $_POST['job_id'], $_POST['cost'], $_POST['description'], $_POST['vendor']);
 
@@ -90,7 +90,7 @@ if (!empty($_POST)) {
 			break;
 		case 'estimate':
 			// mysqli->prepare
-			$connection = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+			$connection = new mysqli($_ENV['DB_HOST'], $_ENV['DB_USERNAME'], $_ENV['DB_PASSWORD'], $_ENV['DB_DATABASE']);
 			$statement = $connection->prepare("INSERT INTO LaborEstimates (JobID, LaborTypeID, Hours) VALUES (?,?,?)");
 			$statement->bind_param("sid", $_POST['job_id'], $_POST['estimate_labor_type'], $_POST['estimate_hours']);
 
@@ -104,7 +104,7 @@ if (!empty($_POST)) {
 			break;
  		case 'CostingEstimate':
 			// mysqli->prepare
-			$connection = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+			$connection = new mysqli($_ENV['DB_HOST'], $_ENV['DB_USERNAME'], $_ENV['DB_PASSWORD'], $_ENV['DB_DATABASE']);
 			$statement = $connection->prepare("INSERT INTO CostingEstimates (JobID, Cost, Description, Vendor) VALUES (?,?,?,?)");
 			$statement->bind_param("sdss", $_POST['costing_estimates_job_id'], $_POST['costing_estimates_cost'], $_POST['costing_estimates_description'], $_POST['costing_estimates_vendor']);
 

@@ -1,17 +1,21 @@
 <?php
 # main-include.php
-require_once '/srv/isme/vendor/autoload.php';
-$dotenv = Dotenv\Dotenv::createImmutable("/srv/isme/");
-$dotenv->load();
+// require_once '/srv/isme/vendor/autoload.php';
+// $dotenv = Dotenv\Dotenv::createImmutable("/srv/isme/");
+// $dotenv->load();
 
 // hardcoded math constants
 define("TARGET_NET_PROFIT_MARGIN", 0.3);
 define("SHOP_RATE", 75);
 define("COST_OF_OPERATION", (SHOP_RATE*(1-TARGET_NET_PROFIT_MARGIN)));
 
+define("LOGDIR", base_path() . "/storage/logs/");
+
+$title = "ISME";
+
 // brand new MySQLi function
 function db($sql, $multipleRows = true, $fetch = true ) {
-	$connection = new mysqli($_ENV['MYSQL_HOST'], $_ENV['MYSQL_USER'], $_ENV['MYSQL_PASS'], $_ENV['MYSQL_SCHEMA']);
+	$connection = new mysqli($_ENV['DB_HOST'], $_ENV['DB_USERNAME'], $_ENV['DB_PASSWORD'], $_ENV['DB_DATABASE']);
 		if ($connection->connect_errno) {
 			ISLog("<div class=\"warning\">Failed to connect to MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error . "<p>" . $mysqli->host_info . "</p></div>");
 		}
@@ -85,7 +89,11 @@ function quickTable($array, $passedColumns = false) {
 	echo "</table>";
 }
 
-function ISLog($writeto, $target = "log/isme_log.html" ) {
+function ISLog($writeto, $target = "legacy.log" ) {
+    $target = LOGDIR.$target;
+    if (!file_exists($target)) {
+        file_put_contents($target, '');
+    }
 	$writeto = "<p style=\"font-size:1em; border-bottom:1px #CCC solid; margin:0;\">".date('l F j Y h:i:s A')." ".$writeto."</p>";
 	$writeto .= file_get_contents($target);
 	file_put_contents($target, $writeto);
