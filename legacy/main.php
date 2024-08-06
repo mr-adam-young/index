@@ -1,16 +1,14 @@
 <?php
-
-require 'includes/main-include.php';
-require 'includes/panel-header.php';
+require 'legacy_include.php';
 
 if (isset($_GET['job'])) {
-	require 'views/job.php';
+	require 'job.php';
 } elseif (isset($_GET['edit'])) {
-	require 'views/job-edit.php';
+	require 'job-edit.php';
 } elseif (isset($_GET['search'])) {
     $title = "Search: ".$_GET['search'];
     $list = db("SELECT * FROM Jobs WHERE Description LIKE '%".$_GET['search']."%' OR Title LIKE '%".$_GET['search']."%' ORDER BY ID DESC");
-    require 'views/job-list.php';
+    require 'job-list.php';
 } else {
     if (!isset($_GET['all'])) {
         $title = "Active Jobs";
@@ -19,7 +17,5 @@ if (isset($_GET['job'])) {
         $title = "All Jobs Ever";
         $list = db("SELECT * FROM Jobs INNER JOIN StatusCodes ON Jobs.Status=StatusCodes.Value ORDER BY ID DESC");
     }
-    require 'views/jobs-table.php';
+    require 'jobs-table.php';
 }
-
-require 'includes/panel-footer.php'; 

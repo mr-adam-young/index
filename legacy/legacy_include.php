@@ -1,17 +1,13 @@
 <?php
-# main-include.php
-// require_once '/srv/isme/vendor/autoload.php';
-// $dotenv = Dotenv\Dotenv::createImmutable("/srv/isme/");
-// $dotenv->load();
+// main-include.php
+// legacy config and libs
 
 // hardcoded math constants
 define("TARGET_NET_PROFIT_MARGIN", 0.3);
 define("SHOP_RATE", 75);
 define("COST_OF_OPERATION", (SHOP_RATE*(1-TARGET_NET_PROFIT_MARGIN)));
 
-define("LOGDIR", base_path() . "/storage/logs/");
-
-$title = "ISME";
+define("LOGDIR", base_path("storage/logs/"));
 
 // brand new MySQLi function
 function db($sql, $multipleRows = true, $fetch = true ) {

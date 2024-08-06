@@ -15,10 +15,6 @@ Route::get('/dashboard', function () {
 // authenticated routes
 Route::middleware('auth')->group(function () {
 
-    // legacy code (.php files)
-    Route::get('{path}', [LegacyController::class, 'handleLegacy'])
-        ->where('path', '.*\.php$');
-
     // user profile stuff
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
