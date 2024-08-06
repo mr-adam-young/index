@@ -1,7 +1,4 @@
 <?php
-// main-include.php
-// legacy config and libs
-
 // hardcoded math constants
 define("TARGET_NET_PROFIT_MARGIN", 0.3);
 define("SHOP_RATE", 75);

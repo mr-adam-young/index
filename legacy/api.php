@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 ISLog("Open labor entries were found and closed.");
             }
 
-            $connection = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+            $connection = new mysqli($_ENV['DB_HOST'], $_ENV['DB_USERNAME'], $_ENV['DB_PASSWORD'], $_ENV['DB_DATABASE']);
             // create a new labor entry
             $statement = $connection->prepare("INSERT INTO LaborNew (EmployeeID, JobID, LaborTypeID, StampIn, Date) VALUES (?,?,?,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP)");
             $statement->bind_param("isi", $_POST['EmployeeID'], $DefaultJob, $_POST['LaborTypeID']);

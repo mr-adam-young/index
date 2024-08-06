@@ -1,12 +1,8 @@
 <?php
-/* 
+// index_inspector.php
+// For loading a single node as a webpage
 
-# index_inspector.php
-For loading a single node as a webpage
-
-*/
 require_once __DIR__.'/includes/main-include.php';
-require_once __DIR__.'/includes/panel-header.php';
 ?>
 
 <h1>All Nodes in Graph</h1>

@@ -32,7 +32,7 @@ if (!empty($_POST))
 	if ($good){
 		// good, send via sql
 
-		$connection = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+		$connection = new mysqli($_ENV['DB_HOST'], $_ENV['DB_USERNAME'], $_ENV['DB_PASSWORD'], $_ENV['DB_DATABASE']);
 
 		if ($_GET['action'] == 'new') {
 			// adding a new job
@@ -474,7 +474,6 @@ echo "<tr>
 </section>
 
 <?php
-/* 888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888 */
 
 // only show insights if install completed
 if ($job['Status'] >= 55) {
@@ -490,19 +489,31 @@ $EstimatedOperationCost = (1 - TARGET_NET_PROFIT_MARGIN) * $TotalLaborCharge;
 $ActualOperationCost = (1 - TARGET_NET_PROFIT_MARGIN) * ($TotalActualHours * SHOP_RATE);
 $Billed 			= $TotalLaborCharge + $estimated_purchases;
 $NetProfit			= $Billed - ($ActualOperationCost + $amount_spent);
-$NetProfitMargin	= ($NetProfit / $Billed) * 100;
+
+// $Billed may be zero, so we need to check for that
+if ($Billed == 0) {
+    $NetProfitMargin = 0;
+} else {
+    $NetProfitMargin = ($NetProfit / $Billed) * 100;
+}
 
 echo "<h3>Billed: ".$Billed."</h3>";
 echo "<h3>Net Profit: ".$NetProfit."</h3>";
 echo "<h3>Net Profit Margin: {$NetProfitMargin}%</h3>";
-echo "<h3>Cost Per Foot: ".($Billed/$job['Length'])."</h3>";
+
+// Length may also be zero, so we need to check for that
+if ($job['Length'] == 0) {
+    echo "<h3>Cost per Foot: [No length set]</h3>";
+} else {
+    echo "<h3>Cost per Foot: ".($Billed/$job['Length'])."</h3>";
+}
 
 // commit calculations to the database
 
-$connection = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
-$sql = "UPDATE Jobs SET ProfitMargin={$NetProfitMargin}, Billed=".$Billed." WHERE ID={$job['ID']}";
+$connection = new mysqli($_ENV['DB_HOST'], $_ENV['DB_USERNAME'], $_ENV['DB_PASSWORD'], $_ENV['DB_DATABASE']);
+$sql = "UPDATE Jobs SET ProfitMargin={$NetProfitMargin}, Billed=".$Billed." WHERE ID='{$job['ID']}'";
 $connection->query($sql);
-$result = "<h3>SQL Query, ".date('l jS \of F Y h:i:s A')."</h3><p>".$sql."</p><p>".$connection->error."</p><hr>";
+$result = "<h3>sql:, ".date('l jS \of F Y h:i:s A')."</h3><p>".$sql."</p><p>".$connection->error."</p><hr>";
 ISLog($result);
 $connection->close();
 
@@ -510,8 +521,8 @@ $connection->close();
 
 </section>
 
-<?php } ?>
-<?php } ?>
+<?php } 
+} ?>
 
 <script language="javascript">
 	$(".invoice_submit").click(function(){
