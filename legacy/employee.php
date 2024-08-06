@@ -1,5 +1,3 @@
-
-
 <?php
 
 // Set the time for the labor resultsFF
