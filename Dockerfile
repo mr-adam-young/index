@@ -1,22 +1,21 @@
-# Use the official PHP image with Apache
 FROM php:8.3-apache
 
 # Install necessary PHP extensions and other dependencies
 RUN apt-get update && apt-get install -y \
     libzip-dev \
-    && docker-php-ext-install zip mysqli
+    && docker-php-ext-install zip mysqli pdo pdo_mysql
 
-# Install Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-# Copy Apache configuration file
-COPY docker.vhost.conf /etc/apache2/sites-available/000-default.conf
+COPY vhost.conf /etc/apache2/sites-available/000-default.conf
 
-# Enable the site
+RUN a2enmod rewrite
 RUN a2ensite 000-default
 
-# Set working directory
-WORKDIR /var/www/public
+WORKDIR /var/www/html
 
-# Expose port 80
+# RUN composer install
+# RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && \
+# apt-get install -y nodejs
+
 EXPOSE 80

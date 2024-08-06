@@ -1,0 +1,10 @@
+<VirtualHost *:80>
+    ServerAdmin adam@index.one
+    DocumentRoot /var/www/html/public
+
+    <Directory /var/www/html/public>
+		Options Indexes FollowSymLinks
+        AllowOverride All
+        Require all granted
+    </Directory>
+</VirtualHost>

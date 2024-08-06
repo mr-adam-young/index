@@ -9,9 +9,9 @@ services:
       ports:
         - "80:80"
       environment:
-        APP_ENV: local
-        APP_DEBUG: yes
-        APP_KEY: base64:YOUR_APP_KEY
+        #APP_ENV: local
+        #APP_DEBUG: yes
+        #APP_KEY: base64:YOUR_APP_KEY
         COMPOSER_ALLOW_SUPERUSER: yes
         MYSQL_HOST: mysql
         MYSQL_DATABASE: ${DB_DATABASE}
@@ -43,4 +43,3 @@ networks:
 
 volumes:
   mysql_data:
-  

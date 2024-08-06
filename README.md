@@ -47,3 +47,12 @@ Old 2018 version required manual entry of granular timesheet data. New version w
 ## Future Work
 
 - [ ] Develop integration with ClockShark
+
+## Commands
+
+docker exec -it index_app /bin/bash
+composer install
+chmod -R 775 storage
+
+docker compose down
+docker compose up --build

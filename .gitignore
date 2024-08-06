@@ -21,3 +21,4 @@ yarn-error.log
 /.vscode
 .DS_Store
 /storage/dumps/*.sql
+vhost.conf
