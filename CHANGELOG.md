@@ -1,23 +1,15 @@
 # Changelog
 
-## [0.4.0] [Unreleased]
-
-Renamed to former colloquial name from its "hidden" name.
+## [0.5.0] [Unreleased]
 
 ### Added
 
-- Archived database from 0.3.4 original environment to ./sql_dumps
-- Docker environment now supports database
+- All pages secured with modern authentication
 
 ### Changed
 
+- Migrate to blade templating engine
 - Created public directory and moved all public files there
-- Had to change the way board.php retrieves data asynchronously
-- Trim output of logging functions
-
-### Deprecated
-
-### Removed
 
 ## [0.3.4] - Tuesday, June 12, 2018
 
@@ -43,8 +35,6 @@ Renamed to former colloquial name from its "hidden" name.
 - Added estimated bill for customer
 
 ## About this file
-
-All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
