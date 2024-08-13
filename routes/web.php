@@ -16,7 +16,13 @@ Route::get('/dashboard', function () {
 // authenticated routes
 Route::middleware('auth')->group(function () {
 
-    Route::get('/jobs', fn() => view('jobs'));
+    Route::get('/jobs', fn() => view('jobs'))->name('jobs');
+
+    Route::get('/board', fn() => view('board'))->name('board');
+
+    Route::get('/jobs/{id}', function ($id) {
+        return view('jobs', ['id' => $id]);
+    })->name('jobs.show');
 
     // user profile stuff
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

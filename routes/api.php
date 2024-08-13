@@ -16,7 +16,7 @@ use App\Http\Controllers\LaborController;
 |
 */
 
-Route::post('/clockshark', [LaborController::class, 'logPostData']);
+Route::post('/clockshark', [LaborController::class, 'store']);
 
 Route::get('/test', function () {
     return response()->json(['message' => 'Test route']);
