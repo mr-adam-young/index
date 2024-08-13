@@ -1,7 +1,9 @@
 <?php
 
-use Illuminate\Http\Request;
+//dd('API routes loaded');
+
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LaborController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,7 +16,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::post('/clockshark', [App\Http\Controllers\LaborController::class, 'logPostData']);
+Route::post('/clockshark', [LaborController::class, 'logPostData']);
+
+Route::get('/test', function () {
+    return response()->json(['message' => 'Test route']);
+});
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
