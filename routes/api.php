@@ -2,8 +2,10 @@
 
 dd('API routes loaded');
 
-use Illuminate\Http\Request;
+//dd('API routes loaded');
+
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LaborController;
 
 use App\Http\Controllers\LaborController;
 
@@ -18,7 +20,8 @@ use App\Http\Controllers\LaborController;
 |
 */
 
-Route::post('/clockshark', [LaborController::class, 'handle']);
+Route::post('/clockshark', [LaborController::class, 'logPostData']);
+
 Route::get('/test', function () {
     return response()->json(['message' => 'Test route']);
 });
