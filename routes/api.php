@@ -1,12 +1,8 @@
 <?php
 
-dd('API routes loaded');
-
-//dd('API routes loaded');
+// dd('API routes loaded');
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\LaborController;
-
 use App\Http\Controllers\LaborController;
 
 /*
