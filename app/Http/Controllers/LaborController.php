@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Request;
 
@@ -19,24 +20,52 @@ class LaborController extends Controller
     {
         // Retrieve the JSON data from the request
         $data = $request->json()->all();
-
+    
+        // Extract JobID from Job string using regex pattern
+        $jobString = $data['Job'] ?? $data['job'] ?? null;
+        $jobId = $this->extractJobId($jobString);
+    
         // Prepare the data for insertion
         $insertData = [
-            'JobID' => $this->getJobId($data['Job'] ?? $data['job']), // Assuming you have a method to get JobID from Job name
-            'EmployeeID' => $this->getEmployeeId($data['Name'] ?? $data['employee']), // Assuming you have a method to get EmployeeID from Name
-            'Timestamp' => $data['Timestamp'] ?? $data['timestamp'],
-            'Date' => date('Y-m-d', strtotime($data['Timestamp'] ?? $data['timestamp'])), // Extract the date from the timestamp
-            'LaborTypeID' => $this->getLaborTypeId($data['Task'] ?? $data['task']), // Assuming you have a method to get LaborTypeID from Task
-            'Hours' => $this->calculateHours($data['Timestamp'] ?? $data['timestamp']), // Assuming a method to calculate hours
-            'StampIn' => $data['coords'] ?? null, // Storing coords in StampIn if that makes sense for your schema
-            'StampOut' => null, // Assuming StampOut is not provided
-            'Migrated' => 0 // Default value for Migrated
+            'JobID' => $jobId,
+            'EmployeeID' => 0, // Default value
+            'Date' => date('Y-m-d', strtotime($data['Timestamp'] ?? $data['timestamp'] ?? now())),
+            'LaborTypeID' => 1, // Default value
+            'description' => ($data['email'] ?? null) . ";" . ($data['job'] ?? null) . ";" . ($data['task'] ?? null) . ";" . ($data['coords'] ?? null) . ";" . ($data['notes'] ?? null),
+            'StampIn' => null, // Initialize as null
+            'StampOut' => null, // Initialize as null
         ];
-
+    
+        // Set StampIn or StampOut based on the state
+        if ($data['state'] === 'in') {
+            $insertData['StampIn'] = date('Y-m-d H:i:s', strtotime($data['Timestamp'] ?? $data['timestamp'] ?? now()));
+        } elseif ($data['state'] === 'out') {
+            $insertData['StampOut'] = date('Y-m-d H:i:s', strtotime($data['Timestamp'] ?? $data['timestamp'] ?? now()));
+        }
+    
         // Insert the data into the LaborNew table
         DB::table('LaborNew')->insert($insertData);
-
+    
         return response()->json(['message' => 'Data successfully inserted'], 201);
+    }
+
+    /**
+     * Extracts the JobID from the Job string based on the pattern "YY-000" or "YY-0000".
+     *
+     * @param string|null $jobString
+     * @return string|null
+     */
+    private function extractJobId($jobString)
+    {
+        if ($jobString) {
+            // Use regex to match patterns like "YY-000" or "YY-0000"
+            if (preg_match('/\b\d{2}-\d{3,4}\b/', $jobString, $matches)) {
+                return $matches[0];
+            }
+        }
+
+        // Return null if no match is found
+        return null;
     }
 
 }
