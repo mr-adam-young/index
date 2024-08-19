@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Job;
 use Illuminate\Http\Request;
+
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class JobController extends Controller
 {
@@ -33,7 +37,7 @@ class JobController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Job $job)
     {
         //
     }
@@ -41,7 +45,7 @@ class JobController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Job $job)
     {
         //
     }
@@ -49,7 +53,7 @@ class JobController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Job $job)
     {
         //
     }
@@ -57,8 +61,26 @@ class JobController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Job $job)
     {
         //
+    }
+
+    public function getActiveJobs()
+    {
+        // Execute the stored procedure
+        DB::connection()->statement("CALL ProjectSummary();");
+
+        // Log the SQL query for debugging purposes
+        // Log::info("CALL ProjectSummary();");
+
+        // Retrieve the results from the database
+        $jobs = DB::table('Jobs')
+            ->join('StatusCodes', 'Jobs.Status', '=', 'StatusCodes.Value')
+            ->whereBetween('Status', [1, 99])
+            ->get();
+
+        // Return the results as a JSON object
+        return response()->json($jobs);
     }
 }

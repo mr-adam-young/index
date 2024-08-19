@@ -3,6 +3,7 @@
 // dd('API routes loaded');
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\JobController;
 use App\Http\Controllers\LaborController;
 
 /*
@@ -25,3 +26,6 @@ Route::get('/test', function () {
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+// Add this route to call the getActiveJobs method
+Route::middleware('auth')->get('jobs/active', [JobController::class, 'getActiveJobs']);
