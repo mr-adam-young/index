@@ -1,7 +1,7 @@
 <x-app-layout>
     
     <x-slot name="header">
-        @include('layouts.legacy-nav');
+        @include('layouts.legacy-nav')
     </x-slot>
 
     <div class="py-12">
