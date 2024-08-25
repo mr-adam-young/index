@@ -16,7 +16,7 @@ class LaborController extends Controller
         return response()->json(['message' => 'Data logged successfully']);
     }
 
-    public function store(Request $request)
+    public function store_old(Request $request)
     {
         // Retrieve the JSON data from the request
         $data = $request->json()->all();
@@ -46,6 +46,30 @@ class LaborController extends Controller
         // Insert the data into the LaborNew table
         DB::table('LaborNew')->insert($insertData);
     
+        return response()->json(['message' => 'Data successfully inserted'], 201);
+    }
+
+    public function store(Request $request)
+    {
+        // Retrieve the JSON data from the request
+        $data = $request->json()->all();
+
+        // Prepare the data for insertion into the clock_events table
+        $insertData = [
+            'first_name' => $data['First Name'] ?? $data['first_name'] ?? null,
+            'last_name' => $data['Last Name'] ?? $data['last_name'] ?? null,
+            'email' => $data['Email'] ?? $data['email'] ?? null,
+            'clock_time' => isset($data['Clock Time']) ? date('Y-m-d H:i:s', strtotime($data['Clock Time'])) : null,
+            'clock_lat' => $data['Clock Lat'] ?? null,
+            'clock_long' => $data['Clock Long'] ?? null,
+            'job_name' => $data['Job Name'] ?? $data['job'] ?? null,
+            'task_name' => $data['Task Name'] ?? $data['task'] ?? null,
+            'notes' => $data['Notes'] ?? $data['notes'] ?? null,
+        ];
+
+        // Insert the data into the clock_events table
+        DB::table('clock_events')->insert($insertData);
+
         return response()->json(['message' => 'Data successfully inserted'], 201);
     }
 
