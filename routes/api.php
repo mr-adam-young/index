@@ -4,7 +4,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\JobController;
-use App\Http\Controllers\LaborController;
+use App\Http\Controllers\ClockEventController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,7 +17,7 @@ use App\Http\Controllers\LaborController;
 |
 */
 
-Route::post('/clockshark', [LaborController::class, 'store']);
+Route::post('/timeclock', [ClockEventController::class, 'store']);
 
 Route::get('/test', function () {
     return response()->json(['message' => 'Test route']);
