@@ -6,7 +6,6 @@ use App\Models\ClockEvent;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-use App\Models\ClockEvent;
 use App\Models\Staff;
 use App\Models\Job;
 use Carbon\Carbon;
