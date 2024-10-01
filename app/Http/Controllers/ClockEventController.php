@@ -6,6 +6,11 @@ use App\Models\ClockEvent;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
+use App\Models\ClockEvent;
+use App\Models\Staff;
+use App\Models\Job;
+use Carbon\Carbon;
+
 class ClockEventController extends Controller
 {
     /**
@@ -95,4 +100,82 @@ class ClockEventController extends Controller
         // Return a response
         return response()->json(['message' => 'Data received', 'data' => $postData], 200);
     }
+
+    // process the clock events into new job and staff records
+    public function generateWorkSummary()
+    {
+        // Fetch all unprocessed ClockEvents
+        $clockEvents = ClockEvent::where('is_processed', 0)
+            ->orderBy('clock_time')
+            ->get();
+
+        foreach ($clockEvents as $event) {
+            // Process Staff
+            $staff = Staff::firstOrCreate(
+                ['email' => $event->email],
+                [
+                    'first_name' => $event->first_name,
+                    'last_name'  => $event->last_name,
+                    // Add other necessary fields
+                ]
+            );
+
+            // Extract job identifier (format: YY-XXX)
+            $jobIdentifier = null;
+            if (preg_match('/\b\d{2}-\d{3}\b/', $event->job_name, $matches)) {
+                $jobIdentifier = $matches[0];
+
+                // Check if the job exists, create if not
+                $job = Job::firstOrCreate(
+                    ['identifier' => $jobIdentifier],
+                    ['name' => $event->job_name]
+                );
+            } else {
+                // Skip jobs without the specified identifier format
+                continue;
+            }
+
+            // Parse clock time
+            $clockTime = Carbon::createFromFormat('n/j/Y G:i', $event->clock_time);
+            $hoursWorked = 0;
+
+            // If this is a clock out event, calculate the hours worked since the last clock in
+            if (!$event->is_clock_in) {
+                // Find the most recent clock-in event for this employee on the same job and task
+                $previousClockInEvent = ClockEvent::where('email', $event->email)
+                    ->where('job_name', $event->job_name)
+                    ->where('task_name', $event->task_name)
+                    ->where('is_clock_in', 1)
+                    ->where('clock_time', '<', $event->clock_time)
+                    ->orderBy('clock_time', 'desc')
+                    ->first();
+
+                if ($previousClockInEvent) {
+                    $clockInTime = Carbon::createFromFormat('n/j/Y G:i', $previousClockInEvent->clock_time);
+                    $hoursWorked = $clockTime->diffInHours($clockInTime);
+                }
+            }
+
+            // Create a new LaborNew entry if hours worked is greater than 0
+            if ($hoursWorked > 0) {
+                LaborNew::create([
+                    'Hours'       => $hoursWorked,
+                    'LaborTypeID' => 1, // Assuming 1 is a default value, you may map this based on tasks
+                    'Timestamp'   => $clockTime->toDateTimeString(),
+                    'Date'        => $clockTime->toDateString(),
+                    'EmployeeID'  => $staff->id, // Assuming Staff model has an 'id' field
+                    'JobID'       => $job->id,   // Assuming Job model has an 'id' field
+                    'Migrated'    => 0,          // Assuming this field is always 0 for new entries
+                    'description' => $event->notes // Assuming the 'notes' field can be used as description
+                ]);
+            }
+
+            // Mark the event as processed
+            $event->is_processed = 1;
+            $event->save();
+        }
+
+        return response()->json(['message' => 'Work summary processed and inserted into LaborNew']);
+    }
+
 }
