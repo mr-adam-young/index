@@ -43,8 +43,12 @@ class JobController extends Controller
      */
     public function show(Job $job)
     {
+        // Retrieve all the records from the StatusCodes table
+        $JobStatuses = \App\Models\StatusCode::all();
+        $laborEstimates = [];
+
         // Pass the job data to the view
-        return view('jobs.show', compact('job'));
+        return view('jobs.show', compact('job', 'JobStatuses', 'laborEstimates'));
     }
 
     /**
