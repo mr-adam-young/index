@@ -15,7 +15,11 @@ class JobController extends Controller
      */
     public function index()
     {
-        //
+        // Retrieve all jobs from the database with pagination
+        $list = Job::paginate(30);
+        
+        // return it as a view instead
+        return view('jobs.index', compact('list'));
     }
 
     /**
@@ -83,5 +87,11 @@ class JobController extends Controller
 
         // Return the results as a JSON object
         return response()->json($jobs);
+    }
+
+    public function active()
+    {
+        $list = Job::active()->paginate(30);
+        return view('jobs.active', compact('list'));
     }
 }

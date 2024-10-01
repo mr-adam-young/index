@@ -17,10 +17,9 @@ Route::get('/dashboard', function () {
 // authenticated routes
 Route::middleware('auth')->group(function () {
 
-    // Route::get('/jobs', fn() => view('jobs'))->name('jobs');
-
     Route::get('/board', fn() => view('board'))->name('board');
 
+    Route::get('jobs/active', [JobController::class, 'active'])->name('jobs.active');
     Route::resource('jobs', JobController::class);
 
     // user profile stuff

@@ -11,7 +11,7 @@ class Job extends Model
     protected $table = 'Jobs';
 
     // Optionally, specify the primary key if it's not the default 'id'
-    protected $primaryKey = 'JobID';
+    protected $primaryKey = 'ID';
 
     // If your primary key is not auto-incrementing
     // public $incrementing = false;
@@ -21,4 +21,10 @@ class Job extends Model
 
     // If the table does not have the default timestamp columns
     public $timestamps = false;
+
+    // Scope to get only active jobs
+    public function scopeActive($query)
+    {
+        return $query->where('is_active', true);
+    }
 }
