@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\LegacyController;
+use App\Http\Controllers\JobController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -16,13 +17,11 @@ Route::get('/dashboard', function () {
 // authenticated routes
 Route::middleware('auth')->group(function () {
 
-    Route::get('/jobs', fn() => view('jobs'))->name('jobs');
+    // Route::get('/jobs', fn() => view('jobs'))->name('jobs');
 
     Route::get('/board', fn() => view('board'))->name('board');
 
-    Route::get('/jobs/{id}', function ($id) {
-        return view('jobs', ['id' => $id]);
-    })->name('jobs.show');
+    Route::resource('jobs', JobController::class);
 
     // user profile stuff
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

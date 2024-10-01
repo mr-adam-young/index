@@ -39,7 +39,8 @@ class JobController extends Controller
      */
     public function show(Job $job)
     {
-        //
+        // Pass the job data to the view
+        return view('jobs.show', compact('job'));
     }
 
     /**
