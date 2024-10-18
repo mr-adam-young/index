@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Job;
+use App\Models\JobStatus;
+use App\Models\StatusCode;
 use Illuminate\Http\Request;
-
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
@@ -78,18 +79,19 @@ class JobController extends Controller
     public function getActiveJobs()
     {
         // Execute the stored procedure
-        DB::connection()->statement("CALL ProjectSummary();");
+        // DB::connection()->statement("CALL ProjectSummary();");
 
         // Log the SQL query for debugging purposes
         // Log::info("CALL ProjectSummary();");
 
+        // ->whereBetween('Status', [1, 99])
+
         // Retrieve the results from the database
-        $jobs = DB::table('Jobs')
-            ->join('StatusCodes', 'Jobs.Status', '=', 'StatusCodes.Value')
-            ->whereBetween('Status', [1, 99])
-            ->get();
+        $jobs = DB::table('Jobs')->get();
+        // 
 
         // Return the results as a JSON object
+        // Log::debug("Retrieved active jobs: " . json_encode($jobs));
         return response()->json($jobs);
     }
 
@@ -98,4 +100,69 @@ class JobController extends Controller
         $list = Job::active()->paginate(30);
         return view('jobs.active', compact('list'));
     }
+
+    /**
+     * Get a list of accounts (jobs).
+     */
+    public function getAccounts()
+    {
+        $jobs = Job::select('ID', 'Title')->get();
+
+        return response()->json($jobs, 200);
+    }
+
+    /**
+     * Get details of a specific job.
+     */
+    public function getJob(Request $request, $id)
+    {
+        $job = Job::with('statusCode')->find($id);
+
+        if (!$job) {
+            return response()->json(['message' => 'Job not found.'], 404);
+        }
+
+        return response()->json($job, 200);
+    }
+
+    /**
+     * Update job status.
+     */
+    public function updateStatus(Request $request)
+    {
+        $request->validate([
+            'job' => 'required|integer',
+            'code' => 'required|integer',
+        ]);
+
+        $jobId = $request->input('job');
+        $statusCode = $request->input('code');
+
+        Log::info("Received status update request for JobID: $jobId with StatusCode: $statusCode");
+
+        // Insert into JobStatus table
+        JobStatus::create([
+            'StatusJobID' => $jobId,
+            'StatusCode' => $statusCode,
+            'StatusDate' => now(),
+        ]);
+
+        // Update the job's status
+        $job = Job::find($jobId);
+
+        if (!$job) {
+            return response()->json(['message' => 'Job not found.'], 404);
+        }
+
+        $job->Status = $statusCode;
+        $job->lastUpdated = now();
+        $job->save();
+
+        return response()->json([
+            'status' => $statusCode,
+            'message' => 'Job status updated successfully.',
+        ], 200);
+    }
+
+    // Additional methods can be added here as needed
 }
