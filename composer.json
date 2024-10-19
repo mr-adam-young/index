@@ -10,11 +10,13 @@
         "laravel/framework": "^11.9",
         "laravel/sanctum": "*",
         "laravel/tinker": "^2.9",
+        "openai-php/laravel": "^0.10.1",
         "stefanak-michal/bolt": "^2.1",
         "vlucas/phpdotenv": "^5.3"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",
+        "kitloong/laravel-migrations-generator": "^7.0",
         "laravel/breeze": "^2.1",
         "laravel/pint": "^1.13",
         "laravel/sail": "^1.26",

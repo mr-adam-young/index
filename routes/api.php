@@ -4,7 +4,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\JobController;
-use App\Http\Controllers\LaborController;
+use App\Http\Controllers\ClockEventController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,15 +17,17 @@ use App\Http\Controllers\LaborController;
 |
 */
 
-Route::post('/clockshark', [LaborController::class, 'store']);
+Route::post('/timeclock', [ClockEventController::class, 'store']);
 
 Route::get('/test', function () {
     return response()->json(['message' => 'Test route']);
 });
 
+// GET requests
+Route::get('/accounts', [JobController::class, 'getAccounts']);
+Route::get('/job/{id}', [JobController::class, 'getJob']);
+Route::get('/jobs/active', [JobController::class, 'getActiveJobs']);
+
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-
-// Add this route to call the getActiveJobs method
-Route::middleware('auth')->get('jobs/active', [JobController::class, 'getActiveJobs']);

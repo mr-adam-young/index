@@ -15,15 +15,17 @@ class CreateClockEventsTable extends Migration
     {
         Schema::create('clock_events', function (Blueprint $table) {
             $table->id();
-            $table->string('first_name');
-            $table->string('last_name');
+            $table->string('first_name')->nullable();
+            $table->string('last_name')->nullable();
             $table->string('email')->nullable();
-            $table->timestamp('clock_time')->nullable();
+            $table->datetime('clock_time')->nullable();
             $table->decimal('clock_lat', 10, 7)->nullable(); // Assuming latitude with up to 7 decimal places
             $table->decimal('clock_long', 10, 7)->nullable(); // Assuming longitude with up to 7 decimal places
             $table->string('job_name')->nullable();
             $table->string('task_name')->nullable();
             $table->text('notes')->nullable();
+            $table->boolean('is_clock_in')->nullable();
+            $table->boolean('is_processed')->default(false);
             $table->timestamps();
         });
     }
