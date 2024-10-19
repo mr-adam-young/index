@@ -7,24 +7,31 @@ use Illuminate\Database\Eloquent\Model;
 
 class Job extends Model
 {
-    // Specify the table name
     protected $table = 'Jobs';
-
-    // Optionally, specify the primary key if it's not the default 'id'
     protected $primaryKey = 'ID';
-
-    // If your primary key is not auto-incrementing
-    // public $incrementing = false;
-
-    // If your primary key is not an integer
     protected $keyType = 'string';
-
-    // If the table does not have the default timestamp columns
     public $timestamps = false;
+
+    // Relationship to get the current status code details
+    public function status()
+    {
+        return $this->hasOne(JobStatus::class, 'status_code');
+    }
+
+    // Relationship to get the history of status changes
+    public function statusHistory()
+    {
+        return $this->hasMany(JobStatusEvent::class, 'StatusJobID');
+    }
 
     // Scope to get only active jobs
     public function scopeActive($query)
     {
-        return $query->where('is_active', true);
+        return $query->where('is_active', 1);
+    }
+
+    public function scopeInProduction($query)
+    {
+        return $query->where('status', '>=', 25);
     }
 }

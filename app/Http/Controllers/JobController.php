@@ -45,11 +45,14 @@ class JobController extends Controller
     public function show(Job $job)
     {
         // Retrieve all the records from the StatusCodes table
-        $JobStatuses = \App\Models\StatusCode::all();
+        $JobStatuses = \App\Models\JobStatus::all();
         $laborEstimates = [];
+        $laborSummary = [];
+        $costingEstimates = [];
+        $LaborTypes = \App\Models\LaborType::all();
 
         // Pass the job data to the view
-        return view('jobs.show', compact('job', 'JobStatuses', 'laborEstimates'));
+        return view('jobs.show', compact('job', 'JobStatuses', 'laborEstimates', 'costingEstimates', 'LaborTypes'));
     }
 
     /**
@@ -78,25 +81,14 @@ class JobController extends Controller
 
     public function getActiveJobs()
     {
-        // Execute the stored procedure
-        // DB::connection()->statement("CALL ProjectSummary();");
-
-        // Log the SQL query for debugging purposes
-        // Log::info("CALL ProjectSummary();");
-
-        // ->whereBetween('Status', [1, 99])
-
-        // Retrieve the results from the database
-        $jobs = DB::table('Jobs')->get();
-        // 
-
-        // Return the results as a JSON object
-        // Log::debug("Retrieved active jobs: " . json_encode($jobs));
+        // intended for API use
+        $jobs = Job::active()->get();
         return response()->json($jobs);
     }
 
-    public function active()
+    public function getactive()
     {
+        // intended for web use
         $list = Job::active()->paginate(30);
         return view('jobs.active', compact('list'));
     }
