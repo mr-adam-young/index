@@ -1,9 +1,5 @@
-module.exports = {
-    branches: [
-        { name: 'main' },                    // Stable releases for general use
-        { name: 'next', prerelease: true },   // Pre-releases (e.g., 1.1.0-next.1)
-        { name: 'hessiron-stable' },          // Independent stable branch for the client
-      ],
+export default {
+    branches: ['main', 'next', 'hessiron-stable'],
     plugins: [
       '@semantic-release/commit-analyzer',
       '@semantic-release/release-notes-generator',
@@ -17,4 +13,4 @@ module.exports = {
         },
       ],
     ],
-  };
+};
