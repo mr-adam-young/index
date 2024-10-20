@@ -2,7 +2,7 @@
     "name": "index",
     "version": "0.5.0",
     "release": {
-        "branches": ["main", "hessiron-stable"]
+        "branches": ["main"]
       },
     "private": true,
     "type": "module",

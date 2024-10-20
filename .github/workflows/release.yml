@@ -3,8 +3,7 @@ name: Release
 on:
   push:
     branches:
-      - main  # Adjust to your default branch
-      - hessiron-stable
+      - main
 
 jobs:
   release:
@@ -25,4 +24,4 @@ jobs:
       - name: Semantic Release
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-        run: node --experimental-modules node_modules/.bin/semantic-release
+        run: npx semantic-release

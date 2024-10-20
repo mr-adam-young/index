@@ -1,13 +1,10 @@
 # Changelog
-
 ## [0.5.0] [Unreleased]
 
 ### Added
-
 - All pages secured with modern authentication
 
 ### Changed
-
 - Migrate to blade templating engine
 - Created public directory and moved all public files there
 
