@@ -3,7 +3,7 @@ name: Release
 on:
   push:
     branches:
-      - main
+      - hessiron-stable
 
 jobs:
   release:
@@ -24,7 +24,7 @@ jobs:
       - name: Semantic Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: npx semantic-release --tag-format=v${version}-hessiron
+        run: node --experimental-modules node_modules/.bin/semantic-release
 
       - name: Generate CHANGELOG.md
         run: |
