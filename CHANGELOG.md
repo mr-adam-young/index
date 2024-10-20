@@ -3,18 +3,18 @@
 
 ### Added
 - All pages secured with modern authentication
-    
+
 ### Changed
 - Migrate to blade templating engine
 - Created public directory and moved all public files there
 
-## [0.3.4] - Tuesday, June 12, 2018
+## [0.3.4] - 2018-06-13
 
 - Reduced visual clutter of Jobs page by making fields more lightweight
 - ProjectSummary() stored procedure incorporated into Production Board timed update
 - Jobs marked “Completed” now cache their insights data in the database
 
-## [0.3.3] - Tuesday, June 12, 2018
+## [0.3.3] - 2018-06-12
 
 - Job information in list now has a new look, visually displays material type and job status, also whether estimate data is entered or not
 - Fixed issue where user could not enter new jobs
