@@ -4,14 +4,19 @@
     "release": {
         "branches": [
             "main",
-            "hessiron-stable"
-        ]
+            {
+              "name": "hessiron-stable",
+              "channel": "hessiron",
+              "prerelease": "hessiron"
+            }
+          ]
     },
     "private": true,
     "type": "module",
     "scripts": {
         "dev": "vite",
-        "build": "vite build"
+        "build": "vite build",
+        "release": "semantic-release"
     },
     "devDependencies": {
         "@semantic-release/changelog": "^6.0.3",

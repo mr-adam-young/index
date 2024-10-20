@@ -24,7 +24,7 @@ jobs:
       - name: Semantic Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: node --experimental-modules node_modules/.bin/semantic-release
+        run: npx semantic-release --dry-run
 
       - name: Generate CHANGELOG.md
         run: |
