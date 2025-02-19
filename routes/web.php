@@ -17,12 +17,9 @@ Route::get('/dashboard', function () {
 // authenticated routes
 Route::middleware('auth')->group(function () {
 
-    Route::get('/board', fn() => view('board'))->name('board');
+    Route::resource('subjects', SubjectController::class);
 
-    Route::get('jobs/active', [JobController::class, 'active'])->name('jobs.active');
-    Route::resource('jobs', JobController::class);
-
-    // user profile stuff
+    // user
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');

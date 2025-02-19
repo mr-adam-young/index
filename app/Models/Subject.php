@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Subject extends Model
 {
-    use HasUlids;
-    use HasFactory;
+    use HasUlids, HasFactory;
+
+    protected $fillable = ['name', 'url'];
 }

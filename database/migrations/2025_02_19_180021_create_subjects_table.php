@@ -12,7 +12,7 @@ return new class extends Migration
 
         Schema::create('subjects', function (Blueprint $table) {
             $table->ulid('id')->primary();
-            $table->string('title');
+            $table->string('name');
             $table->string('url')->nullable();
             $table->timestamp('last_used_at')->nullable();
             $table->timestamp('expires_at')->nullable();
