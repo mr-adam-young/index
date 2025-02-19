@@ -6,13 +6,12 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
+        Schema::dropIfExists('subjects');
+
         Schema::create('subjects', function (Blueprint $table) {
-            $table->string('id', 26)->unique();
+            $table->ulid('id')->primary();
             $table->string('title');
             $table->string('url')->nullable();
             $table->timestamp('last_used_at')->nullable();
@@ -21,9 +20,6 @@ return new class extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('subjects');
