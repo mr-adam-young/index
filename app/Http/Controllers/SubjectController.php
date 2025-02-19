@@ -15,15 +15,24 @@ class SubjectController extends Controller
      */
     public function index()
     {
-        //
+        $subjects = Subject::all();
+
+        return response()->json([
+            'subjects' => $subjects,
+        ]);
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Store a newly created resource in storage.
      */
-    public function create(Request $request)
+    public function store(Request $request)
     {
-        // Create a new Subject with a ULID as primary key
+        // Validate request
+        $request->validate([
+            'name' => 'required|string|max:255',
+        ]);
+
+        // Create a new Subject
         $subject = Subject::create([
             'name' => $request->input('name'),
         ]);
@@ -51,19 +60,19 @@ class SubjectController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
      * Display the specified resource.
      */
     public function show(string $id)
     {
-        //
+        $subject = Subject::findOrFail($id);
+
+        $qrCodePath = storage_path("app/qrcodes/{$subject->id}.png");
+        $qrCodeUrl = file_exists($qrCodePath) ? asset("storage/qrcodes/{$subject->id}.png") : null;
+
+        return response()->json([
+            'subject' => $subject,
+            'qr_code_url' => $qrCodeUrl,
+        ]);
     }
 
     /**
@@ -79,7 +88,18 @@ class SubjectController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $subject = Subject::findOrFail($id);
+
+        $request->validate([
+            'name' => 'sometimes|string|max:255',
+        ]);
+
+        $subject->update($request->only('name'));
+
+        return response()->json([
+            'message' => 'Subject updated successfully.',
+            'subject' => $subject,
+        ]);
     }
 
     /**
@@ -87,6 +107,17 @@ class SubjectController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $subject = Subject::findOrFail($id);
+
+        // Delete QR code file if exists
+        $filePath = "qrcodes/{$subject->id}.png";
+        Storage::disk('local')->delete($filePath);
+
+        // Delete subject
+        $subject->delete();
+
+        return response()->json([
+            'message' => 'Subject deleted successfully.',
+        ]);
     }
 }

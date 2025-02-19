@@ -17,6 +17,8 @@ Route::get('/dashboard', function () {
 // authenticated routes
 Route::middleware('auth')->group(function () {
 
+    Route::get('/{id}', [SubjectController::class, 'show'])->name('subject.show');
+
     Route::resource('subjects', SubjectController::class);
 
     // user
